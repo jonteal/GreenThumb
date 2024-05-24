@@ -1,0 +1,23 @@
+[
+  {
+    "id": "abc",
+    "clientProjectId": "abc",
+    "clientId": "123",
+    "projectName": "First Project",
+    "projectStatus": "ACTIVE"
+  },
+  {
+    "id": "def",
+    "clientProjectId": "def",
+    "clientId": "123",
+    "projectName": "Second Project",
+    "projectStatus": "INACTIVE"
+  },
+  {
+    "id": "ghi",
+    "clientProjectId": "ghi",
+    "clientId": "123",
+    "projectName": "Third Project",
+    "projectStatus": "ACTIVE"
+  }
+]

@@ -28,10 +28,10 @@ export const startMockServer = () => {
     mockServer.use(middleware);
     mockServer.use(
       jsonServer.rewriter({
-        "/*": "/1",
+        "/*": "/$1",
         "/client/:clientId": "/client?clientId=:clientId",
         "/client/:clientId/project": "/project?clientId=:clientId",
-        "project/:projectId": "/project?projectId=:projectId",
+        "/project/:projectId": "/project?projectId=:projectId",
       })
     );
 
