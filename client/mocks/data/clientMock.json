@@ -1,0 +1,17 @@
+[
+  {
+    "clientId": "123",
+    "clientName": "Benjamin Jackson",
+    "clientStatus": "LEAD"
+  },
+  {
+    "clientId": "456",
+    "clientName": "Lydia Jackson",
+    "clientStatus": "CURRENT"
+  },
+  {
+    "clientId": "789",
+    "clientName": "Jon Jackson",
+    "clientStatus": "COLD"
+  }
+]
