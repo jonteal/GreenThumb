@@ -78,6 +78,21 @@ export const ClientForm = ({ onSubmit, defaultValues }: ClientFormProps) => {
             );
           }}
         />
+
+        <FormField
+          control={form.control}
+          name="clientEmail"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Client Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter client email" {...field} />
+                </FormControl>
+              </FormItem>
+            );
+          }}
+        />
         <div className="flex gap-4 mt-4">
           <Button
             type="button"

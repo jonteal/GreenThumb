@@ -90,7 +90,7 @@ export const columns: ColumnDef<ClientType>[] = [
   },
   {
     accessorKey: "clientEmail",
-    header: () => <div className="text-right">Client Email</div>,
+    header: () => <div className="text-left">Client Email</div>,
     cell: ({ row }) => (
       <div className="text-left capitalize font-medium">
         {row.getValue("clientEmail")}
