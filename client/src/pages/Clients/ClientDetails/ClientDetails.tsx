@@ -1,11 +1,11 @@
 import { DeleteButton } from "@/components/DeleteButton";
-import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import {
   useDeleteClient,
   useGetClientById,
 } from "@/services/client/clientServiceHooks";
 import { useNavigate, useParams } from "react-router-dom";
+import { ClientDetailsCard } from "./components/ClientDetailsCard";
 
 export const ClientDetails = () => {
   const navigate = useNavigate();
@@ -32,19 +32,23 @@ export const ClientDetails = () => {
       },
     });
   };
+
+  if (isLoading || !client) return <div>Loading...</div>;
   return (
     <>
       <header className="flex justify-between items-end mt-6">
-        <div>
+        {/* <div>
           <h1 className="text-4xl font-bold mb-1 text-gray-800">
             {client?.clientName}
           </h1>
-        </div>
+        </div> */}
         <div>
           <DeleteButton label="Delete Client" handleDelete={handleDelete} />
         </div>
       </header>
-      <div></div>
+      <div>
+        <ClientDetailsCard client={client} />
+      </div>
     </>
   );
 };

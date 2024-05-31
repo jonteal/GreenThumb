@@ -2,16 +2,19 @@
   {
     "clientId": "123",
     "clientName": "Benjamin Jackson",
+    "clientEmail": "benjamin@gmail.com",
     "clientStatus": "LEAD"
   },
   {
     "clientId": "456",
     "clientName": "Lydia Jackson",
+    "clientEmail": "lydia@gmail.com",
     "clientStatus": "CURRENT"
   },
   {
     "clientId": "789",
     "clientName": "Jon Jackson",
+    "clientEmail": "jon@gmail.com",
     "clientStatus": "COLD"
   }
 ]
