@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/table";
 import { ClientType } from "@/services/client/types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const columns: ColumnDef<ClientType>[] = [
   {
@@ -101,7 +102,8 @@ export const columns: ColumnDef<ClientType>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const client = row.original;
+      const navigate = useNavigate();
 
       return (
         <DropdownMenu>
@@ -114,12 +116,16 @@ export const columns: ColumnDef<ClientType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(client.clientId)}
             >
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => navigate(`/client/${client.clientId}`)}
+            >
+              View Details
+            </DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

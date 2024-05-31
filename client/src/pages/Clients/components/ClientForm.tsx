@@ -87,7 +87,11 @@ export const ClientForm = ({ onSubmit, defaultValues }: ClientFormProps) => {
               <FormItem>
                 <FormLabel>Client Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter client email" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="Enter client email"
+                    {...field}
+                  />
                 </FormControl>
               </FormItem>
             );
