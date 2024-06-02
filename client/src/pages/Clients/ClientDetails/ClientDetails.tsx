@@ -6,6 +6,7 @@ import {
 } from "@/services/client/clientServiceHooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClientDetailsCard } from "./components/ClientDetailsCard";
+import { Button } from "@/components/ui/button";
 
 export const ClientDetails = () => {
   const navigate = useNavigate();
@@ -42,7 +43,11 @@ export const ClientDetails = () => {
             {client?.clientName}
           </h1>
         </div> */}
+
         <div>
+          <Button onClick={() => navigate(`/client/${clientId}/project/add`)}>
+            Add Project
+          </Button>
           <DeleteButton label="Delete Client" handleDelete={handleDelete} />
         </div>
       </header>

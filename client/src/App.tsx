@@ -1,12 +1,16 @@
 import "./App.css";
+import { Navbar } from "./components/Navbar";
 import { PageRouter } from "./routes/PageRouter";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">FlowSwift</h1>
-
-      <PageRouter />
+      <div className="w-screen h-screen text-black flex">
+        <Navbar />
+        <div className="grow flex flex-col gap-8 px-8 py-8">
+          <PageRouter />
+        </div>
+      </div>
     </>
   );
 }
