@@ -19,7 +19,7 @@ export const startMockServer = () => {
     clientRouter.db._.id = "clientId";
 
     const projectRouter = jsonServer.router({ project: projectMock });
-    projectRouter.db._.id = "projectId";
+    projectRouter.db._.id = "clientProjectId";
 
     const middleware = jsonServer.defaults();
 

@@ -13,6 +13,12 @@ export const useGetProjects = () =>
     queryFn: async () => api.get(endpoint),
   });
 
+export const useGetProjectsByClientId = (clientId: string) =>
+  useQuery<ProjectType[]>({
+    queryKey: [`${baseProjectQueryKey}-${clientId}`],
+    queryFn: async () => api.get(`${endpoint}/${clientId}`),
+  });
+
 export const useGetProjectById = (clientProjectId: string) =>
   useQuery<ProjectType>({
     queryKey: [`${baseProjectQueryKey}-${clientProjectId}`],

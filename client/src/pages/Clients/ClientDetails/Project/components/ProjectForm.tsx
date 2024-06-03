@@ -15,23 +15,39 @@ import {
 } from "@/components/ui/select";
 import { ProjectType } from "@/services/project/types";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { projectStatuses } from "@/services/project/projectServiceHooks";
 import { Button } from "@/components/ui/button";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const projectSchema = z.object({
+  clientId: z.string(),
+  projectName: z.string().min(3, {
+    message: "Project name must be at least 3 characters.",
+  }),
+  projectStatus: z.enum(projectStatuses),
+});
 
 export type ProjectFormProps = {
   onSubmit: (data: ProjectType) => void;
-  defaultValues?: Partial<ProjectType>;
+  project?: Partial<ProjectType>;
 };
 
-export const ProjectForm = ({ onSubmit, defaultValues }: ProjectFormProps) => {
+export const ProjectForm = ({ onSubmit, project }: ProjectFormProps) => {
+  const { clientId } = useParams();
   const navigate = useNavigate();
   const form = useForm<ProjectType>({
-    defaultValues,
+    resolver: zodResolver(projectSchema),
+    defaultValues: {
+      clientId,
+      ...project,
+    },
   });
   return (
     <Form {...form}>
       <form
+        id="project-form"
         onSubmit={form.handleSubmit(onSubmit)}
         className="max-w-md flex flex-col gap-6"
       >

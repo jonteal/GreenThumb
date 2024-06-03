@@ -7,6 +7,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ClientDetailsCard } from "./components/ClientDetailsCard";
 import { Button } from "@/components/ui/button";
+import { ProjectsTable } from "./Project/components/ProjectTable";
 
 export const ClientDetails = () => {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ export const ClientDetails = () => {
       </header>
       <div>
         <ClientDetailsCard client={client} />
+        <ProjectsTable />
       </div>
     </>
   );
