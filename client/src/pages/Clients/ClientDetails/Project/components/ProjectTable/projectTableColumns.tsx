@@ -11,6 +11,7 @@ import {
 import { ProjectType } from "@/services/project/types";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
+import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
@@ -50,7 +51,12 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("projectName")}</div>
+      <Link
+        to={`/client/${row.original.clientId}/project/${row.original.clientProjectId}`}
+        className="capitalize text-left hover:underline"
+      >
+        {row.getValue("projectName")}
+      </Link>
     ),
   },
   {

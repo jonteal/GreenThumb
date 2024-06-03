@@ -6,7 +6,7 @@ export const Clients = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <h1 className="text-4xl font-bold text-gray-800">Clients</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">Clients</h1>
       <Button onClick={() => navigate("/client/add")}>Add Client</Button>
       <ClientsTable />
     </div>
