@@ -3,18 +3,24 @@
     "clientId": "123",
     "clientName": "Benjamin Jackson",
     "clientEmail": "benjamin@gmail.com",
-    "clientStatus": "LEAD"
+    "clientStatus": "LEAD",
+    "clientCompanyName": "",
+    "clientPhoneNumber": "367-483-8765"
   },
   {
     "clientId": "456",
     "clientName": "Lydia Jackson",
     "clientEmail": "lydia@gmail.com",
-    "clientStatus": "CURRENT"
+    "clientStatus": "CURRENT",
+    "clientCompanyName": "Lydia's Cake Shop",
+    "clientPhoneNumber": "367-483-8782"
   },
   {
     "clientId": "789",
     "clientName": "Jon Jackson",
     "clientEmail": "jon@gmail.com",
-    "clientStatus": "COLD"
+    "clientStatus": "COLD",
+    "clientCompanyName": "Jon's Java",
+    "clientPhoneNumber": "367-483-2452"
   }
 ]

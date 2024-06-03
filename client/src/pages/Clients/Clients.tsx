@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { ClientsTable } from "./components/ClientsTable";
+import { ClientsTable } from "./components/ClientsTable/ClientsTable";
 
 export const Clients = () => {
   const navigate = useNavigate();

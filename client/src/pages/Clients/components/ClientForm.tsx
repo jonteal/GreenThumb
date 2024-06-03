@@ -97,6 +97,39 @@ export const ClientForm = ({ onSubmit, defaultValues }: ClientFormProps) => {
             );
           }}
         />
+        <FormField
+          control={form.control}
+          name="clientPhoneNumber"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input
+                    type="tel"
+                    placeholder="Enter client phone number"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            );
+          }}
+        />
+
+        <FormField
+          control={form.control}
+          name="clientCompanyName"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Company Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter company name" {...field} />
+                </FormControl>
+              </FormItem>
+            );
+          }}
+        />
         <div className="flex gap-4 mt-4">
           <Button
             type="button"

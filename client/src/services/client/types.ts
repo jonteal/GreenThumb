@@ -4,4 +4,6 @@ export type ClientType = {
   clientName: string;
   clientStatus: string;
   clientEmail: string;
+  clientPhoneNumber: string;
+  clientCompanyName: string;
 };

@@ -41,98 +41,8 @@ import {
 import { ClientType } from "@/services/client/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ClientsTableColumns } from "./clientsTableColumns";
 
-export const columns: ColumnDef<ClientType>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "clientName",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Client Name
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("clientName")}</div>
-    ),
-  },
-  {
-    accessorKey: "clientStatus",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("clientStatus")}</div>
-    ),
-  },
-  {
-    accessorKey: "clientEmail",
-    header: () => <div className="text-left">Client Email</div>,
-    cell: ({ row }) => (
-      <div className="text-left capitalize font-medium">
-        {row.getValue("clientEmail")}
-      </div>
-    ),
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const client = row.original;
-      const navigate = useNavigate();
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(client.clientId)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => navigate(`/client/${client.clientId}`)}
-            >
-              View Details
-            </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
 export const ClientsTable = () => {
   const { data: clients, isLoading } = useGetClients();
 
@@ -145,7 +55,7 @@ export const ClientsTable = () => {
 
   const table = useReactTable({
     data: clients || [],
-    columns,
+    columns: ClientsTableColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -242,7 +152,7 @@ export const ClientsTable = () => {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={ClientsTableColumns.length}
                   className="h-24 text-center"
                 >
                   No results.
