@@ -30,7 +30,7 @@ export const startMockServer = () => {
         "/*": "/$1",
         // "/client/:clientId": "/client?clientId=:clientId",
         "/client/:clientId/project": "/project?clientId=:clientId",
-        // "project/:projectId": "/project?projectId=:projectId",
+        // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
       })
     );
 

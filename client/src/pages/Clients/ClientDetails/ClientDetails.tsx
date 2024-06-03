@@ -7,7 +7,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ClientDetailsCard } from "./components/ClientDetailsCard";
 import { Button } from "@/components/ui/button";
-import { ProjectsTable } from "./Project/components/ProjectTable";
+import { ProjectsTable } from "./Project/components/ProjectTable/ProjectTable";
 
 export const ClientDetails = () => {
   const navigate = useNavigate();

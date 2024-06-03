@@ -16,7 +16,7 @@ export const useGetProjects = () =>
 export const useGetProjectsByClientId = (clientId: string) =>
   useQuery<ProjectType[]>({
     queryKey: [`${baseProjectQueryKey}-${clientId}`],
-    queryFn: async () => api.get(`${endpoint}/${clientId}`),
+    queryFn: async () => api.get(`client/${clientId}/project`),
   });
 
 export const useGetProjectById = (clientProjectId: string) =>
