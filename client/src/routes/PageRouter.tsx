@@ -1,18 +1,28 @@
 import App from "@/App";
+import { CRM } from "@/pages/CRM/CRM";
 import { ClientAdd } from "@/pages/Clients/ClientAdd";
 import { ClientDetails } from "@/pages/Clients/ClientDetails/ClientDetails";
 import { ClientEdit } from "@/pages/Clients/ClientDetails/ClientEdit";
 import { ProjectAdd } from "@/pages/Clients/ClientDetails/Project/ProjectAdd";
 import { ProjectDetails } from "@/pages/Clients/ClientDetails/Project/ProjectDetails/ProjectDetails";
 import { Clients } from "@/pages/Clients/Clients";
+import { Crops } from "@/pages/Crops/Crops";
 import { Dashboard } from "@/pages/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
+import { Production } from "@/pages/Production/Production";
+import { Products } from "@/pages/Products/Products";
+import { Schedule } from "@/pages/Schedule/Schedule";
 import { Navigate, Route, Routes, createBrowserRouter } from "react-router-dom";
 
 export const PageRouter = () => {
   return (
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/schedule" element={<Schedule />} />
+      <Route path="/production" element={<Production />} />
+      <Route path="/crm" element={<CRM />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/crops" element={<Crops />} />
       <Route
         path="/client"
         element={<Clients />}

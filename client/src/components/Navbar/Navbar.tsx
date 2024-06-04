@@ -1,13 +1,22 @@
 import { ReactElement } from "react";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "../ui/navigation-menu";
-import { LayoutDashboard, LogOut, Settings, Users } from "lucide-react";
+import {
+  Clock,
+  DollarSign,
+  Handshake,
+  LayoutDashboard,
+  LogOut,
+  Pickaxe,
+  Settings,
+  ShoppingBasket,
+  Sprout,
+  Users,
+} from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -25,9 +34,39 @@ const primaryNavItems: NavbarItemType[] = [
     href: "/dashboard",
   },
   {
-    label: "Clients",
+    label: "Schedule",
+    icon: <Clock />,
+    href: "/schedule",
+  },
+  {
+    label: "Orders",
+    icon: <DollarSign />,
+    href: "/orders",
+  },
+  {
+    label: "Production",
+    icon: <Pickaxe />,
+    href: "/production",
+  },
+  {
+    label: "CRM",
+    icon: <Handshake />,
+    href: "/crm",
+  },
+  {
+    label: "Products",
+    icon: <ShoppingBasket />,
+    href: "/products",
+  },
+  {
+    label: "Crops",
+    icon: <Sprout />,
+    href: "/crops",
+  },
+  {
+    label: "Team",
     icon: <Users />,
-    href: "/client",
+    href: "/team",
   },
 ];
 
@@ -38,7 +77,7 @@ const secondaryNavItems: NavbarItemType[] = [
     href: "/settings",
   },
   {
-    label: "Clients",
+    label: "Logout",
     icon: <LogOut />,
     href: "/logout",
   },
@@ -48,45 +87,42 @@ export const Navbar = () => {
   const location = useLocation();
   return (
     <>
-      <aside className="inset-y-0 left-0 z-10 hidden w-14 flex-col items-center justify-center border-r bg-sky-600 sm:flex">
-        <div className="flex font-thin mb-16 mt-8">FS</div>
+      <aside className="inset-y-0 left-0 z-10 hidden w-40 flex-col items-center justify-center border-r bg-sky-600 sm:flex">
+        <div className="flex mb-16 text-lg mt-8 text-white font-semibold italic">
+          FarmHand
+        </div>
         <NavigationMenu>
-          <NavigationMenuList className="flex-col">
+          <NavigationMenuList className="flex-col items-start">
             {primaryNavItems.map((item, i) => (
               <NavigationMenuItem key={"upper-nav-" + i} className="relative">
-                <NavigationMenuTrigger>
-                  <NavigationMenuLink
-                    asChild
-                    active={location.pathname.includes(item.href)}
-                    className="p-2 rounded-sm data-[active]:bg-sky-600 text-white visited:text-white"
-                  >
-                    <Link to={item.href}>{item.icon}</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
+                <NavigationMenuLink
+                  asChild
+                  active={location.pathname.includes(item.href)}
+                  className="p-2 rounded-sm data-[active]:bg-sky-600 text-white visited:text-white"
+                >
+                  <Link className="flex flex-row" to={item.href}>
+                    <span className="mr-3">{item.icon}</span> {item.label}
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
 
         <NavigationMenu className="items-end mb-4">
-          <NavigationMenuList className="flex-col">
+          <NavigationMenuList className="flex-col items-start">
             {secondaryNavItems.map((item, i) => (
               <NavigationMenuItem key={"lower-nav-" + i} className="relative">
-                <NavigationMenuTrigger>
-                  <NavigationMenuLink
-                    asChild
-                    active={location.pathname.includes(item.href)}
-                    className="p-2 rounded-sm data-[active]:bg-sky-600 text-white visited:text-white"
-                  >
-                    <Link to={item.href}>{item.icon}</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
+                <NavigationMenuLink
+                  asChild
+                  active={location.pathname.includes(item.href)}
+                  className="p-2 rounded-sm data-[active]:bg-sky-600 text-white visited:text-white"
+                >
+                  <Link className="flex flex-row" to={item.href}>
+                    <span className="mr-3">{item.icon} </span>
+                    {item.label}
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
