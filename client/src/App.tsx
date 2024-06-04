@@ -7,7 +7,7 @@ function App() {
     <>
       <div className="w-screen h-screen text-black flex">
         <Navbar />
-        <div className="grow flex flex-col gap-8 px-8 py-8">
+        <div className="grow flex flex-col gap-8 px-2 py-8">
           <PageRouter />
         </div>
       </div>

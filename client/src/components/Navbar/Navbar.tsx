@@ -87,8 +87,8 @@ export const Navbar = () => {
   const location = useLocation();
   return (
     <>
-      <aside className="inset-y-0 left-0 z-10 hidden w-40 flex-col items-center justify-center border-r bg-sky-600 sm:flex">
-        <div className="flex mb-16 text-lg mt-8 text-white font-semibold italic">
+      <aside className="inset-y-0 left-0 z-10 hidden w-40 flex-col items-center justify-center border-r bg-neutral-800 sm:flex">
+        <div className="flex mb-16 text-xl mt-8 font-semibold italic text-green-600">
           FarmHand
         </div>
         <NavigationMenu>

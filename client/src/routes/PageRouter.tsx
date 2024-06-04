@@ -7,7 +7,7 @@ import { ProjectAdd } from "@/pages/Clients/ClientDetails/Project/ProjectAdd";
 import { ProjectDetails } from "@/pages/Clients/ClientDetails/Project/ProjectDetails/ProjectDetails";
 import { Clients } from "@/pages/Clients/Clients";
 import { Crops } from "@/pages/Crops/Crops";
-import { Dashboard } from "@/pages/Dashboard";
+import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { Production } from "@/pages/Production/Production";
 import { Products } from "@/pages/Products/Products";
