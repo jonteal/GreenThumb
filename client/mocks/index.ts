@@ -1,6 +1,7 @@
 import jsonServer from "json-server";
 import clientMock from "./data/clientMock.json";
 import projectMock from "./data/projectMock.json";
+import cropMock from "./data/cropMock.json";
 
 const serverPort = 5174;
 
@@ -21,6 +22,9 @@ export const startMockServer = () => {
     const projectRouter = jsonServer.router({ project: projectMock });
     projectRouter.db._.id = "clientProjectId";
 
+    const cropRouter = jsonServer.router({ crop: cropMock });
+    cropRouter.db._.id = "cropId";
+
     const middleware = jsonServer.defaults();
 
     mockServer.use(middleware);
@@ -30,12 +34,14 @@ export const startMockServer = () => {
         "/*": "/$1",
         // "/client/:clientId": "/client?clientId=:clientId",
         "/client/:clientId/project": "/project?clientId=:clientId",
+        "/crop/:cropId": "/crop?cropId=:cropId",
         // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
       })
     );
 
     mockServer.all(["/project", "/project/*"], projectRouter);
     mockServer.all(["/client", "/client/*"], clientRouter);
+    mockServer.all(["/crop", "/crop/*"], cropRouter);
 
     mockServer.listen(serverPort, () => {
       console.log(`JSON server is running on http://localhost:${serverPort}/`);

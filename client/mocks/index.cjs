@@ -1,6 +1,7 @@
 const jsonServer = require("json-server");
 const clientMock = require("./data/clientMock.json");
 const projectMock = require("./data/projectMock.json");
+const cropMock = require("./data/cropMock.json");
 
 const serverPort = 5174;
 
@@ -21,6 +22,7 @@ export const startMockServer = () => {
     const router = jsonServer.router({
       client: clientMock,
       project: projectMock,
+      crop: cropMock,
     });
 
     const middleware = jsonServer.defaults();
@@ -33,6 +35,7 @@ export const startMockServer = () => {
         "/client/:clientId/project": "/project?clientId=:clientId",
         "/project/:clientProjectId":
           "/project?clientProjectId=:clientProjectId",
+        "/crop/:cropId": "/crop?cropId=:cropId",
       })
     );
 

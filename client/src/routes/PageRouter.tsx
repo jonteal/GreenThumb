@@ -9,6 +9,7 @@ import { Clients } from "@/pages/Clients/Clients";
 import { Crops } from "@/pages/Crops/Crops";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
+import { Orders } from "@/pages/Orders/Orders";
 import { Production } from "@/pages/Production/Production";
 import { Products } from "@/pages/Products/Products";
 import { Schedule } from "@/pages/Schedule/Schedule";
@@ -23,6 +24,7 @@ export const PageRouter = () => {
       <Route path="/crm" element={<CRM />} />
       <Route path="/products" element={<Products />} />
       <Route path="/crops" element={<Crops />} />
+      <Route path="/orders" element={<Orders />} />
       <Route
         path="/client"
         element={<Clients />}
