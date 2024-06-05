@@ -150,11 +150,12 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const client = row.original;
+      const customer = row.original;
       const navigate = useNavigate();
 
       return (
-        <DropdownMenu>
+        <>
+          {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
@@ -164,19 +165,34 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(client.customerId)}
+              onClick={() => navigate(`/customer/${customer.customerId}`)}
             >
-              Copy payment ID
+              Details
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => navigate(`/client/${client.customerId}`)}
+            // onClick={}
             >
-              View Details
+              Delete
             </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Edit</DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
+          <Button
+            className="bg-blue-600 text-neutral-50 mr-1"
+            onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
+          >
+            Details
+          </Button>
+          <Button className="bg-red-600 text-neutral-50">Delete</Button>
+          <Button
+            className="bg-green-600 text-neutral-50 ml-1"
+            onClick={() =>
+              navigate(`/crm/customer/${customer.customerId}/edit`)
+            }
+          >
+            Edit
+          </Button>
+        </>
       );
     },
   },
