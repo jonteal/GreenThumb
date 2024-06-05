@@ -1,0 +1,57 @@
+[
+  {
+    "orderId": "0001",
+    "customerId": "123",
+    "total": 250,
+    "status": "SCHEDULED",
+    "startDate": "2024-03-06T00:00:00.000Z",
+    "dueDate": "2024-03-013T00:00:00.000Z",
+    "repeat": "1 week",
+    "templateId": "template1",
+    "paymentStatus": "onDelivery"
+  },
+  {
+    "orderId": "0002",
+    "customerId": "123",
+    "total": 220,
+    "status": "SCHEDULED",
+    "startDate": "2024-03-06T00:00:00.000Z",
+    "dueDate": "2024-03-013T00:00:00.000Z",
+    "repeat": "1 week",
+    "templateId": "template2",
+    "paymentStatus": "onDelivery"
+  },
+  {
+    "orderId": "0003",
+    "customerId": "456",
+    "total": 120,
+    "status": "SCHEDULED",
+    "startDate": "2024-03-06T00:00:00.000Z",
+    "dueDate": "2024-03-013T00:00:00.000Z",
+    "repeat": "1 week",
+    "templateId": "template1",
+    "paymentStatus": "onDelivery"
+  },
+  {
+    "orderId": "0004",
+    "customerId": "456",
+    "total": 300,
+    "status": "SCHEDULED",
+    "startDate": "2024-03-06T00:00:00.000Z",
+    "dueDate": "2024-03-013T00:00:00.000Z",
+    "repeat": "1 week",
+    "templateId": "template2",
+    "paymentStatus": "onDelivery"
+  },
+  {
+    "orderId": "0005",
+    "customerId": "789",
+    "total": 280,
+    "status": "SCHEDULED",
+    "startDate": "2024-03-06T00:00:00.000Z",
+    "dueDate": "2024-03-013T00:00:00.000Z",
+    "repeat": "1 week",
+    "templateId": "template3",
+    "paymentStatus": "onPickup"
+  }
+]

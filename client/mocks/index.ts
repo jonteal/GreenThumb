@@ -2,6 +2,7 @@ import jsonServer from "json-server";
 import customerMock from "./data/customerMock.json";
 import projectMock from "./data/projectMock.json";
 import cropMock from "./data/cropMock.json";
+import orderMock from "./data/orderMock.json";
 
 const serverPort = 5174;
 
@@ -25,6 +26,9 @@ export const startMockServer = () => {
     const cropRouter = jsonServer.router({ crop: cropMock });
     cropRouter.db._.id = "cropId";
 
+    const orderRouter = jsonServer.router({ order: orderMock });
+    orderRouter.db._.id = "orderId";
+
     const middleware = jsonServer.defaults();
 
     mockServer.use(middleware);
@@ -33,6 +37,7 @@ export const startMockServer = () => {
       jsonServer.rewriter({
         "/*": "/$1",
         "/customer/:customerId": "/customer?customerId=:customerId",
+        "/order/:orderId": "/order?orderId=:orderId",
         "/customer/:customerId/project": "/project?customerId=:customerId",
         "/crop/:cropId": "/crop?cropId=:cropId",
         // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
@@ -40,6 +45,7 @@ export const startMockServer = () => {
     );
 
     mockServer.all(["/crop", "/crop/*"], cropRouter);
+    mockServer.all(["/order", "/order/*"], orderRouter);
     mockServer.all(["/customer", "/customer/*"], customerRouter);
     mockServer.all(["/project", "/project/*"], projectRouter);
 

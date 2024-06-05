@@ -1,13 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { CustomerType } from "@/services/customer/types";
-import { CaretSortIcon } from "@radix-ui/react-icons";
+import { OrderType } from "@/services/orders/types";
+import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
+export const OrdersTableColumns: ColumnDef<OrderType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -31,7 +39,29 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "customer",
+    accessorKey: "orderId",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Order Id
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <Link
+        to={`/crm/customer/${row.original.orderId}`}
+        className="capitalize text-left hover:underline"
+      >
+        {row.getValue("orderId")}
+      </Link>
+    ),
+  },
+  {
+    accessorKey: "customerId",
     header: ({ column }) => {
       return (
         <Button
@@ -44,99 +74,135 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
       );
     },
     cell: ({ row }) => (
-      <Link
-        to={`/crm/customer/${row.original.customerId}`}
-        className="capitalize text-left hover:underline"
-      >
-        {row.getValue("customer")}
-      </Link>
+      <div className="capitalize text-left">{row.getValue("customerId")}</div>
     ),
   },
   {
-    accessorKey: "address",
+    accessorKey: "total",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Address
+          Grand Total
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("address")}</div>
+      <div className="capitalize text-left">${row.getValue("total")}</div>
     ),
   },
   {
-    accessorKey: "city",
+    accessorKey: "status",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          City
+          Status
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("city")}</div>
+      <div className="capitalize text-left">{row.getValue("status")}</div>
     ),
   },
   {
-    accessorKey: "stateProvince",
+    accessorKey: "startDate",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          State/Province
+          Start Date
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("startDate"));
+
+      return (
+        <div className="capitalize text-left">{date.toLocaleDateString()}</div>
+      );
+    },
+  },
+  {
+    accessorKey: "dueDate",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Due Date
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("startDate"));
+      return (
+        <div className="capitalize text-left">{date.toLocaleDateString()}</div>
+      );
+    },
+  },
+  {
+    accessorKey: "repeat",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Repeat
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize text-left">{row.getValue("repeat")}</div>
+    ),
+  },
+  {
+    accessorKey: "templateId",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Template ID
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize text-left">{row.getValue("templateId")}</div>
+    ),
+  },
+  {
+    accessorKey: "paymentStatus",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Payment Status
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
       <div className="capitalize text-left">
-        {row.getValue("stateProvince")}
+        {row.getValue("paymentStatus")}
       </div>
-    ),
-  },
-  {
-    accessorKey: "country",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Country
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("country")}</div>
-    ),
-  },
-  {
-    accessorKey: "postalCode",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Postal Code
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("postalCode")}</div>
     ),
   },
   {
@@ -147,29 +213,7 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
       const navigate = useNavigate();
 
       return (
-        <>
-          {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigate(`/customer/${customer.customerId}`)}
-            >
-              Details
-            </DropdownMenuItem>
-            <DropdownMenuItem
-            // onClick={}
-            >
-              Delete
-            </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
+        <div className="flex flex-row">
           <Button
             className="bg-blue-600 text-neutral-50 mr-1"
             onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
@@ -185,7 +229,7 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
           >
             Edit
           </Button>
-        </>
+        </div>
       );
     },
   },

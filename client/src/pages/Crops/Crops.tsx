@@ -17,7 +17,6 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { useAddCrop, useGetCrops } from "@/services/crop/cropServiceHooks";
 import { CropType } from "@/services/crop/types";

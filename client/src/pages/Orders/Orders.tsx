@@ -1,4 +1,5 @@
 import { Card, CardHeader } from "@/components/ui/card";
+import { OrderTable } from "./OrdersTable/OrdersTable";
 
 export const Orders = () => {
   return (
@@ -7,6 +8,8 @@ export const Orders = () => {
         <CardHeader className="text-md font-semibold flex flex-row justify-center py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           Graphs
         </CardHeader>
+
+        <OrderTable />
       </Card>
     </div>
   );
