@@ -9,18 +9,18 @@ export const ProjectAdd = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const addClient = useAddProject({
+  const addProject = useAddProject({
     onSuccess: () => {
       toast({
         title: "Project added successfully",
         variant: "success",
       } as any);
-      navigate(`/client/${customerId}`);
+      navigate(`/customer/${customerId}`);
     },
   });
 
   const handleAdd = (data: ProjectType) => {
-    addClient.mutate(data);
+    addProject.mutate(data);
   };
 
   return (

@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CustomerType } from "@/services/client/types";
+import { CustomerType } from "@/services/customer/types";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
@@ -52,7 +52,7 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
     },
     cell: ({ row }) => (
       <Link
-        to={`/client/${row.original.customerId}`}
+        to={`/crm/customer/${row.original.customerId}`}
         className="capitalize text-left hover:underline"
       >
         {row.getValue("customer")}

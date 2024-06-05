@@ -7,17 +7,20 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { CustomerType } from "@/services/client/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { CustomerType } from "@/services/customer/types";
 
 export type CustomerFormProps = {
   onSubmit: (data: CustomerType) => void;
   defaultValues?: Partial<CustomerType>;
 };
 
-export const ClientForm = ({ onSubmit, defaultValues }: CustomerFormProps) => {
+export const CustomerForm = ({
+  onSubmit,
+  defaultValues,
+}: CustomerFormProps) => {
   const navigate = useNavigate();
   const form = useForm<CustomerType>({
     defaultValues,
@@ -118,7 +121,7 @@ export const ClientForm = ({ onSubmit, defaultValues }: CustomerFormProps) => {
           >
             Cancel
           </Button>
-          <Button type="submit">Save Client</Button>
+          <Button type="submit">Save Customer</Button>
         </div>
       </form>
     </Form>

@@ -52,7 +52,7 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
     },
     cell: ({ row }) => (
       <Link
-        to={`/client/${row.original.customerId}/project/${row.original.customerProjectId}`}
+        to={`/customer/${row.original.customerId}/project/${row.original.customerProjectId}`}
         className="capitalize text-left hover:underline"
       >
         {row.getValue("projectName")}
@@ -104,7 +104,9 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() =>
-                navigate(`/client/${customerId}/project/${project.customerId}`)
+                navigate(
+                  `/customer/${customerId}/project/${project.customerId}`
+                )
               }
             >
               View Details

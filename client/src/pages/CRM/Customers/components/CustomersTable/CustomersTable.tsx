@@ -1,3 +1,4 @@
+import { useGetCustomers } from "@/services/customer/customerServiceHooks";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import {
   ColumnFiltersState,
@@ -29,15 +30,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useGetProjectsByClientId } from "@/services/project/projectServiceHooks";
-import { ProjectTableColumns } from "./projectTableColumns";
+import { CustomerTableColumns } from "./customerTableColumns";
 
-export const ProjectsTable = () => {
-  const { customerId } = useParams();
-  const { data: projects, isLoading } = useGetProjectsByClientId(
-    customerId || ""
-  );
+export const CustomersTable = () => {
+  const { data: customers, isLoading } = useGetCustomers();
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -45,8 +41,8 @@ export const ProjectsTable = () => {
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: projects || [],
-    columns: ProjectTableColumns,
+    data: customers || [],
+    columns: CustomerTableColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -67,12 +63,12 @@ export const ProjectsTable = () => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter project names..."
+          placeholder="Filter customer names..."
           value={
-            (table.getColumn("projectName")?.getFilterValue() as string) ?? ""
+            (table.getColumn("customer")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("projectName")?.setFilterValue(event.target.value)
+            table.getColumn("customer")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -143,7 +139,7 @@ export const ProjectsTable = () => {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={ProjectTableColumns.length}
+                  colSpan={CustomerTableColumns.length}
                   className="h-24 text-center"
                 >
                   No results.

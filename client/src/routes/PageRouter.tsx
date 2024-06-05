@@ -1,11 +1,11 @@
 import App from "@/App";
 import { CRM } from "@/pages/CRM/CRM";
-import { CustomerAdd } from "@/pages/CRM/Clients/ClientAdd";
-import { ClientDetails } from "@/pages/CRM/Clients/ClientDetails/ClientDetails";
-import { ClientEdit } from "@/pages/CRM/Clients/ClientDetails/ClientEdit";
-import { ProjectAdd } from "@/pages/CRM/Clients/ClientDetails/Project/ProjectAdd";
-import { ProjectDetails } from "@/pages/CRM/Clients/ClientDetails/Project/ProjectDetails/ProjectDetails";
-import { Clients } from "@/pages/CRM/Clients/Clients";
+import { CustomerAdd } from "@/pages/CRM/Customers/CustomerAdd";
+import { CustomerDetails } from "@/pages/CRM/Customers/CustomerDetails/CustomerDetails";
+import { CustomerEdit } from "@/pages/CRM/Customers/CustomerDetails/CustomerEdit";
+import { ProjectAdd } from "@/pages/CRM/Customers/CustomerDetails/Project/ProjectAdd";
+import { ProjectDetails } from "@/pages/CRM/Customers/CustomerDetails/Project/ProjectDetails/ProjectDetails";
+import { Customers } from "@/pages/CRM/Customers/Customers";
 import { Crops } from "@/pages/Crops/Crops";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
@@ -26,22 +26,21 @@ export const PageRouter = () => {
       <Route path="/crops" element={<Crops />} />
       <Route path="/orders" element={<Orders />} />
       <Route
-        path="/customer"
-        element={<Clients />}
+        path="/crm/customer"
+        element={<Customers />}
         handle={{
           title: "Customer",
         }}
       />
-      <Route path="/customer/add" element={<CustomerAdd />} />
-      <Route path="/customer/:customerId" element={<ClientDetails />} />
-      <Route path="/customer/:customerId/edit" element={<ClientEdit />} />
-      <Route path="/customer/:customerId/edit" element={<ClientEdit />} />
+      <Route path="/crm/customer/add" element={<CustomerAdd />} />
+      <Route path="/crm/customer/:customerId" element={<CustomerDetails />} />
+      <Route path="/crm/customer/:customerId/edit" element={<CustomerEdit />} />
       <Route
-        path="/customer/:customerId/project/:customerProjectId"
+        path="/crm/customer/:customerId/project/:customerProjectId"
         element={<ProjectDetails />}
       />
       <Route
-        path="/customer/:customerId/project/add"
+        path="/crm/customer/:customerId/project/add"
         element={<ProjectAdd />}
       />
     </Routes>
@@ -64,7 +63,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/customer/:customerId",
-        element: <ClientDetails />,
+        element: <CustomerDetails />,
         handle: { title: "Details" },
       },
       {
@@ -74,7 +73,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/customer/*",
-        element: <Clients />,
+        element: <Customers />,
         handle: { title: "Customers" },
       },
       {

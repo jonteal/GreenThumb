@@ -1,7 +1,7 @@
 [
   {
     "id": "abc",
-    "clientProjectId": "abc",
+    "customerProjectId": "abc",
     "customerId": "123",
     "projectName": "First Project",
     "projectStatus": "ACTIVE",
@@ -9,7 +9,7 @@
   },
   {
     "id": "def",
-    "clientProjectId": "def",
+    "customerProjectId": "def",
     "customerId": "123",
     "projectName": "Second Project",
     "projectStatus": "INACTIVE",
@@ -17,7 +17,7 @@
   },
   {
     "id": "ghi",
-    "clientProjectId": "ghi",
+    "customerProjectId": "ghi",
     "customerId": "789",
     "projectName": "Third Project",
     "projectStatus": "ACTIVE",

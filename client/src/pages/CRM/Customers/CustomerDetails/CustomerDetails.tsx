@@ -3,31 +3,31 @@ import { toast } from "@/components/ui/use-toast";
 import {
   useDeleteCustomer,
   useGetCustomerById,
-} from "@/services/client/clientServiceHooks";
+} from "@/services/customer/customerServiceHooks";
 import { useNavigate, useParams } from "react-router-dom";
-import { ClientDetailsCard } from "./components/ClientDetailsCard";
+import { CustomerDetailsCard } from "./components/CustomerDetailsCard";
 import { Button } from "@/components/ui/button";
 import { ProjectsTable } from "./Project/components/ProjectTable/ProjectTable";
 
-export const ClientDetails = () => {
+export const CustomerDetails = () => {
   const navigate = useNavigate();
   const { customerId = "" } = useParams();
-  const { data: client, isLoading } = useGetCustomerById(customerId);
+  const { data: customer, isLoading } = useGetCustomerById(customerId);
 
-  const deleteClientMutation = useDeleteCustomer();
+  const deleteCustomerMutation = useDeleteCustomer();
 
   const handleDelete = () => {
-    deleteClientMutation.mutate(customerId, {
+    deleteCustomerMutation.mutate(customerId, {
       onSuccess: () => {
         toast({
-          title: "Client deleted successfully",
+          title: "Customer deleted successfully",
           variant: "success" as any,
         });
-        navigate("/client");
+        navigate("/customer");
       },
       onError: (error) => {
         toast({
-          title: "Error delete client",
+          title: "Error delete customer",
           description: error.message,
           variant: "destructive",
         });
@@ -35,25 +35,21 @@ export const ClientDetails = () => {
     });
   };
 
-  if (isLoading || !client) return <div>Loading...</div>;
+  if (isLoading || !customer) return <div>Loading...</div>;
   return (
     <>
       <header className="flex justify-between items-end mt-6">
-        {/* <div>
-          <h1 className="text-4xl font-bold mb-1 text-gray-800">
-            {client?.clientName}
-          </h1>
-        </div> */}
-
         <div>
-          <Button onClick={() => navigate(`/client/${customerId}/project/add`)}>
+          <Button
+            onClick={() => navigate(`/crm/customer/${customerId}/project/add`)}
+          >
             Add Project
           </Button>
-          <DeleteButton label="Delete Client" handleDelete={handleDelete} />
+          <DeleteButton label="Delete Customer" handleDelete={handleDelete} />
         </div>
       </header>
       <div>
-        <ClientDetailsCard client={client} />
+        <CustomerDetailsCard customer={customer} />
         <ProjectsTable />
       </div>
     </>

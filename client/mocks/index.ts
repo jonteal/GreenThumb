@@ -16,11 +16,11 @@ export const startMockServer = () => {
   try {
     const mockServer = jsonServer.create();
 
-    const customerRouter = jsonServer.router({ client: customerMock });
+    const customerRouter = jsonServer.router({ customer: customerMock });
     customerRouter.db._.id = "customerId";
 
     const projectRouter = jsonServer.router({ project: projectMock });
-    projectRouter.db._.id = "clientProjectId";
+    projectRouter.db._.id = "customerProjectId";
 
     const cropRouter = jsonServer.router({ crop: cropMock });
     cropRouter.db._.id = "cropId";

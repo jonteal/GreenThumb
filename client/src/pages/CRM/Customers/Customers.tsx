@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { ClientsTable } from "./components/ClientsTable/ClientsTable";
+import { CustomersTable } from "./components/CustomersTable/CustomersTable";
 
-export const Clients = () => {
+export const Customers = () => {
   const navigate = useNavigate();
   return (
     <div>
@@ -13,7 +13,7 @@ export const Clients = () => {
       >
         Add Customer
       </Button>
-      <ClientsTable />
+      <CustomersTable />
     </div>
   );
 };
