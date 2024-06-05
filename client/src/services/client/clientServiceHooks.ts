@@ -1,48 +1,48 @@
 import { MutationOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { api, queryClient } from "@/services/api";
-import { ClientType } from "./types";
+import { CustomerType } from "./types";
 
-const endpoint = "client";
-export const baseClientQueryKey = "client";
-export const clientStatuses = ["LEAD", "CURRENT", "COLD"];
+const endpoint = "customer";
+export const baseClientQueryKey = "customer";
 
-export const useGetClients = () =>
-  useQuery<ClientType[]>({
+export const useGetCustomers = () =>
+  useQuery<CustomerType[]>({
     queryKey: [baseClientQueryKey],
     queryFn: async () => api.get(endpoint),
   });
 
-export const useGetClientById = (clientId: string) =>
-  useQuery<ClientType>({
-    queryKey: [`${baseClientQueryKey}-${clientId}`],
-    queryFn: async () => api.get(`${endpoint}/${clientId}`),
+export const useGetCustomerById = (customerId: string) =>
+  useQuery<CustomerType>({
+    queryKey: [`${baseClientQueryKey}-${customerId}`],
+    queryFn: async () => api.get(`${endpoint}/${customerId}`),
   });
 
-export const useAddClient = ({ onSuccess }: { onSuccess: () => void }) =>
-  useMutation<ClientType, Error, ClientType>({
-    mutationFn: async (newClient: ClientType) => api.post(endpoint, newClient),
+export const useAddCustomer = ({ onSuccess }: { onSuccess: () => void }) =>
+  useMutation<CustomerType, Error, CustomerType>({
+    mutationFn: async (newCustomer: CustomerType) =>
+      api.post(endpoint, newCustomer),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
       onSuccess();
     },
   });
 
-export const useUpdateClient = (
-  options: MutationOptions<ClientType, Error, ClientType>
+export const useUpdateCustomer = (
+  options: MutationOptions<CustomerType, Error, CustomerType>
 ) =>
-  useMutation<ClientType, Error, ClientType>({
-    mutationFn: async (editedClient: ClientType) =>
-      api.put(`${endpoint}/${editedClient.clientId}`, editedClient),
+  useMutation<CustomerType, Error, CustomerType>({
+    mutationFn: async (editedCustomer: CustomerType) =>
+      api.put(`${endpoint}/${editedCustomer.customerId}`, editedCustomer),
     ...options,
   });
 
-export const useDeleteClient = () =>
-  useMutation<ClientType, Error, string>({
-    mutationFn: async (clientId) => api.delete(`${endpoint}/${clientId}`),
-    onSuccess: (data, clientId) => {
+export const useDeleteCustomer = () =>
+  useMutation<CustomerType, Error, string>({
+    mutationFn: async (customerId) => api.delete(`${endpoint}/${customerId}`),
+    onSuccess: (data, customerId) => {
       queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
       queryClient.removeQueries({
-        queryKey: [`${baseClientQueryKey}-${clientId}`],
+        queryKey: [`${baseClientQueryKey}-${customerId}`],
         exact: true,
       });
     },

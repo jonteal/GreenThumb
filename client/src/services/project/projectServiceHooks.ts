@@ -13,10 +13,10 @@ export const useGetProjects = () =>
     queryFn: async () => api.get(endpoint),
   });
 
-export const useGetProjectsByClientId = (clientId: string) =>
+export const useGetProjectsByClientId = (customerId: string) =>
   useQuery<ProjectType[]>({
-    queryKey: [`${baseProjectQueryKey}-${clientId}`],
-    queryFn: async () => api.get(`client/${clientId}/project`),
+    queryKey: [`${baseProjectQueryKey}-${customerId}`],
+    queryFn: async () => api.get(`customer/${customerId}/project`),
   });
 
 export const useGetProjectById = (clientProjectId: string) =>
@@ -40,7 +40,7 @@ export const useUpdateProject = (
 ) =>
   useMutation<ProjectType, Error, ProjectType>({
     mutationFn: async (editedProject: ProjectType) =>
-      api.put(`${endpoint}/${editedProject.clientProjectId}`, editedProject),
+      api.put(`${endpoint}/${editedProject.customerProjectId}`, editedProject),
     ...options,
   });
 

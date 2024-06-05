@@ -88,8 +88,8 @@ export const Navbar = () => {
   return (
     <>
       <aside className="inset-y-0 left-0 z-10 hidden w-40 flex-col items-center justify-center border-r bg-neutral-800 sm:flex">
-        <div className="flex mb-16 text-xl mt-8 font-semibold italic text-green-600">
-          FarmHand
+        <div className="flex mb-16 text-xl mt-8 font-semibold italic text-green-700">
+          Green<span className="text-green-600">Thumb</span>
         </div>
         <NavigationMenu>
           <NavigationMenuList className="flex-col items-start">

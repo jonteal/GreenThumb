@@ -22,7 +22,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const projectSchema = z.object({
-  clientId: z.string(),
+  customerId: z.string(),
   projectName: z.string().min(3, {
     message: "Project name must be at least 3 characters.",
   }),
@@ -35,12 +35,12 @@ export type ProjectFormProps = {
 };
 
 export const ProjectForm = ({ onSubmit, project }: ProjectFormProps) => {
-  const { clientId } = useParams();
+  const { customerId } = useParams();
   const navigate = useNavigate();
   const form = useForm<ProjectType>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
-      clientId,
+      customerId,
       ...project,
     },
   });

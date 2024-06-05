@@ -1,9 +1,10 @@
-export type ClientType = {
+export type CustomerType = {
   id: string;
-  clientId: string;
-  clientName: string;
-  clientStatus: string;
-  clientEmail: string;
-  clientPhoneNumber: string;
-  clientCompanyName: string;
+  customerId: string;
+  customer: string;
+  address: string;
+  city: string;
+  stateProvince: string;
+  country: string;
+  postalCode: string;
 };

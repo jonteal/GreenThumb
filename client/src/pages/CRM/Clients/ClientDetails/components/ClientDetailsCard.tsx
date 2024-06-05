@@ -7,17 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ClientType } from "@/services/client/types";
+import { CustomerType } from "@/services/client/types";
 
-export const ClientDetailsCard = ({ client }: { client: ClientType }) => {
+export const ClientDetailsCard = ({ client }: { client: CustomerType }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{client?.clientName}</CardTitle>
-        <CardDescription>{client?.clientStatus}</CardDescription>
+        <CardTitle>{client?.customer}</CardTitle>
+        {/* <CardDescription>{client?.clientStatus}</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <NameValuePair label="Email" value={client?.clientEmail} />
+        <NameValuePair label="Email" value={client?.address} />
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>

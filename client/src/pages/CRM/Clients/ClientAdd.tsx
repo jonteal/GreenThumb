@@ -1,14 +1,14 @@
 import { useToast } from "@/components/ui/use-toast";
-import { useAddClient } from "@/services/client/clientServiceHooks";
-import { ClientType } from "@/services/client/types";
+import { useAddCustomer } from "@/services/client/clientServiceHooks";
+import { CustomerType } from "@/services/client/types";
 import { useNavigate } from "react-router-dom";
 import { ClientForm } from "./components/ClientForm";
 
-export const ClientAdd = () => {
+export const CustomerAdd = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const addClient = useAddClient({
+  const addClient = useAddCustomer({
     onSuccess: () => {
       toast({
         title: "Client added successfully",
@@ -18,7 +18,7 @@ export const ClientAdd = () => {
     },
   });
 
-  const handleAdd = (data: ClientType) => {
+  const handleAdd = (data: CustomerType) => {
     addClient.mutate(data);
   };
 

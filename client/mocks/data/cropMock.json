@@ -1,11 +1,14 @@
 [
   {
-    "name": "Broccoli"
+    "cropId": "123",
+    "cropName": "Broccoli"
   },
   {
-    "name": "Speckled Pead"
+    "cropId": "456",
+    "cropName": "Speckled Pead"
   },
   {
-    "name": "Radish"
+    "cropId": "789",
+    "cropName": "Radish"
   }
 ]

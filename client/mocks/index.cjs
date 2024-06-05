@@ -1,5 +1,5 @@
 const jsonServer = require("json-server");
-const clientMock = require("./data/clientMock.json");
+const customerMock = require("./data/customerMock.json");
 const projectMock = require("./data/projectMock.json");
 const cropMock = require("./data/cropMock.json");
 
@@ -20,7 +20,7 @@ export const startMockServer = () => {
     /* Add mock data entities here */
 
     const router = jsonServer.router({
-      client: clientMock,
+      customer: customerMock,
       project: projectMock,
       crop: cropMock,
     });
@@ -31,11 +31,11 @@ export const startMockServer = () => {
     mockServer.use(
       jsonServer.rewriter({
         "/*": "/$1",
-        "/client/:clientId": "/client?clientId=:clientId",
-        "/client/:clientId/project": "/project?clientId=:clientId",
-        "/project/:clientProjectId":
-          "/project?clientProjectId=:clientProjectId",
         "/crop/:cropId": "/crop?cropId=:cropId",
+        "/customer/:customerId": "/customer?customerId=:customerId",
+        "/customer/:customerId/project": "/project?customerId=:customerId",
+        // "/project/:clientProjectId":
+        //   "/project?clientProjectId=:clientProjectId",
       })
     );
 

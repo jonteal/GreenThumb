@@ -1,5 +1,5 @@
 import jsonServer from "json-server";
-import clientMock from "./data/clientMock.json";
+import customerMock from "./data/customerMock.json";
 import projectMock from "./data/projectMock.json";
 import cropMock from "./data/cropMock.json";
 
@@ -16,8 +16,8 @@ export const startMockServer = () => {
   try {
     const mockServer = jsonServer.create();
 
-    const clientRouter = jsonServer.router({ client: clientMock });
-    clientRouter.db._.id = "clientId";
+    const customerRouter = jsonServer.router({ client: customerMock });
+    customerRouter.db._.id = "customerId";
 
     const projectRouter = jsonServer.router({ project: projectMock });
     projectRouter.db._.id = "clientProjectId";
@@ -32,16 +32,16 @@ export const startMockServer = () => {
       "*",
       jsonServer.rewriter({
         "/*": "/$1",
-        // "/client/:clientId": "/client?clientId=:clientId",
-        "/client/:clientId/project": "/project?clientId=:clientId",
+        "/customer/:customerId": "/customer?customerId=:customerId",
+        "/customer/:customerId/project": "/project?customerId=:customerId",
         "/crop/:cropId": "/crop?cropId=:cropId",
         // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
       })
     );
 
-    mockServer.all(["/project", "/project/*"], projectRouter);
-    mockServer.all(["/client", "/client/*"], clientRouter);
     mockServer.all(["/crop", "/crop/*"], cropRouter);
+    mockServer.all(["/customer", "/customer/*"], customerRouter);
+    mockServer.all(["/project", "/project/*"], projectRouter);
 
     mockServer.listen(serverPort, () => {
       console.log(`JSON server is running on http://localhost:${serverPort}/`);

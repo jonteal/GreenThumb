@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -9,13 +8,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ClientType } from "@/services/client/types";
+import { CustomerType } from "@/services/client/types";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export const ClientsTableColumns: ColumnDef<ClientType>[] = [
+export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -39,99 +38,112 @@ export const ClientsTableColumns: ColumnDef<ClientType>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "clientName",
+    accessorKey: "customer",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Client Name
+          Customer
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
       <Link
-        to={`/client/${row.original.clientId}`}
+        to={`/client/${row.original.customerId}`}
         className="capitalize text-left hover:underline"
       >
-        {row.getValue("clientName")}
+        {row.getValue("customer")}
       </Link>
     ),
   },
   {
-    accessorKey: "clientStatus",
+    accessorKey: "address",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Client Status
+          Address
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize text-left">{row.getValue("address")}</div>
+    ),
+  },
+  {
+    accessorKey: "city",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          City
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize text-left">{row.getValue("city")}</div>
+    ),
+  },
+  {
+    accessorKey: "stateProvince",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          State/Province
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
       <div className="capitalize text-left">
-        <Badge>{row.getValue("clientStatus")}</Badge>
+        {row.getValue("stateProvince")}
       </div>
     ),
   },
   {
-    accessorKey: "clientEmail",
+    accessorKey: "country",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Client Email
+          Country
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("clientEmail")}</div>
+      <div className="capitalize text-left">{row.getValue("country")}</div>
     ),
   },
   {
-    accessorKey: "clientCompanyName",
+    accessorKey: "postalCode",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Company Name
+          Postal Code
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">
-        {row.getValue("clientCompanyName")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "clientPhoneNumber",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Phone Number
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize text-left">
-        {row.getValue("clientPhoneNumber")}
-      </div>
+      <div className="capitalize text-left">{row.getValue("postalCode")}</div>
     ),
   },
   {
@@ -152,13 +164,13 @@ export const ClientsTableColumns: ColumnDef<ClientType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(client.clientId)}
+              onClick={() => navigator.clipboard.writeText(client.customerId)}
             >
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => navigate(`/client/${client.clientId}`)}
+              onClick={() => navigate(`/client/${client.customerId}`)}
             >
               View Details
             </DropdownMenuItem>

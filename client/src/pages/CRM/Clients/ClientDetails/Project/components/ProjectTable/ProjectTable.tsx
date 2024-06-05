@@ -1,11 +1,5 @@
-import { useGetClients } from "@/services/client/clientServiceHooks";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import {
-  CaretSortIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-} from "@radix-ui/react-icons";
-import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -18,15 +12,11 @@ import {
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -38,15 +28,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ClientType } from "@/services/client/types";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ClientsTableColumns } from "./clientsTableColumns";
+import { useParams } from "react-router-dom";
+import { useGetProjectsByClientId } from "@/services/project/projectServiceHooks";
+import { ProjectTableColumns } from "./projectTableColumns";
 
-export const ClientsTable = () => {
-  const { data: clients, isLoading } = useGetClients();
-
-  console.log("clients: ", clients);
+export const ProjectsTable = () => {
+  const { customerId } = useParams();
+  const { data: projects, isLoading } = useGetProjectsByClientId(
+    customerId || ""
+  );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -54,8 +45,8 @@ export const ClientsTable = () => {
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: clients || [],
-    columns: ClientsTableColumns,
+    data: projects || [],
+    columns: ProjectTableColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -76,12 +67,12 @@ export const ClientsTable = () => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter client names..."
+          placeholder="Filter project names..."
           value={
-            (table.getColumn("clientName")?.getFilterValue() as string) ?? ""
+            (table.getColumn("projectName")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("clientName")?.setFilterValue(event.target.value)
+            table.getColumn("projectName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -152,7 +143,7 @@ export const ClientsTable = () => {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={ClientsTableColumns.length}
+                  colSpan={ProjectTableColumns.length}
                   className="h-24 text-center"
                 >
                   No results.

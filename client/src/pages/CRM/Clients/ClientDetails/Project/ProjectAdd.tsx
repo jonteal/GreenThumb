@@ -5,7 +5,7 @@ import { useAddProject } from "@/services/project/projectServiceHooks";
 import { ProjectType } from "@/services/project/types";
 
 export const ProjectAdd = () => {
-  const { clientId } = useParams();
+  const { customerId } = useParams();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export const ProjectAdd = () => {
         title: "Project added successfully",
         variant: "success",
       } as any);
-      navigate(`/client/${clientId}`);
+      navigate(`/client/${customerId}`);
     },
   });
 

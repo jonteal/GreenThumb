@@ -1,3 +1,9 @@
+import { Clients } from "./Clients/Clients";
+
 export const CRM = () => {
-  return <div>CRM</div>;
+  return (
+    <div>
+      <Clients />
+    </div>
+  );
 };

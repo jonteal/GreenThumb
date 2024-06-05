@@ -1,8 +1,8 @@
 import { DeleteButton } from "@/components/DeleteButton";
 import { toast } from "@/components/ui/use-toast";
 import {
-  useDeleteClient,
-  useGetClientById,
+  useDeleteCustomer,
+  useGetCustomerById,
 } from "@/services/client/clientServiceHooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClientDetailsCard } from "./components/ClientDetailsCard";
@@ -11,13 +11,13 @@ import { ProjectsTable } from "./Project/components/ProjectTable/ProjectTable";
 
 export const ClientDetails = () => {
   const navigate = useNavigate();
-  const { clientId = "" } = useParams();
-  const { data: client, isLoading } = useGetClientById(clientId);
+  const { customerId = "" } = useParams();
+  const { data: client, isLoading } = useGetCustomerById(customerId);
 
-  const deleteClientMutation = useDeleteClient();
+  const deleteClientMutation = useDeleteCustomer();
 
   const handleDelete = () => {
-    deleteClientMutation.mutate(clientId, {
+    deleteClientMutation.mutate(customerId, {
       onSuccess: () => {
         toast({
           title: "Client deleted successfully",
@@ -46,7 +46,7 @@ export const ClientDetails = () => {
         </div> */}
 
         <div>
-          <Button onClick={() => navigate(`/client/${clientId}/project/add`)}>
+          <Button onClick={() => navigate(`/client/${customerId}/project/add`)}>
             Add Project
           </Button>
           <DeleteButton label="Delete Client" handleDelete={handleDelete} />

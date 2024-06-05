@@ -1,6 +1,6 @@
 export type ProjectType = {
-  clientProjectId: string;
-  clientId: string;
+  customerProjectId: string;
+  customerId: string;
   projectName: string;
   projectStatus: "ACTIVE" | "INACTIVE";
   startDate: string;

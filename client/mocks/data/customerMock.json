@@ -1,0 +1,29 @@
+[
+  {
+    "customerId": "123",
+    "customer": "Benjamin Jackson",
+    "address": "4783 West Ave",
+    "city": "Lowell",
+    "stateProvince": "AR",
+    "country": "United States",
+    "postalCode": "89043"
+  },
+  {
+    "customerId": "456",
+    "customer": "Lydia's Cafe",
+    "address": "8903 East Ave",
+    "city": "Lowell",
+    "stateProvince": "AR",
+    "country": "United States",
+    "postalCode": "89043"
+  },
+  {
+    "customerId": "789",
+    "customer": "Jon Jackson",
+    "address": "8933 Johnson Street",
+    "city": "Lowell",
+    "stateProvince": "AR",
+    "country": "United States",
+    "postalCode": "89043"
+  }
+]

@@ -52,7 +52,7 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
     },
     cell: ({ row }) => (
       <Link
-        to={`/client/${row.original.clientId}/project/${row.original.clientProjectId}`}
+        to={`/client/${row.original.customerId}/project/${row.original.customerProjectId}`}
         className="capitalize text-left hover:underline"
       >
         {row.getValue("projectName")}
@@ -84,7 +84,7 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
       const project = row.original;
       const navigate = useNavigate();
 
-      const { clientId } = useParams();
+      const { customerId } = useParams();
 
       return (
         <DropdownMenu>
@@ -97,14 +97,14 @@ export const ProjectTableColumns: ColumnDef<ProjectType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(project.clientId)}
+              onClick={() => navigator.clipboard.writeText(project.customerId)}
             >
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() =>
-                navigate(`/client/${clientId}/project/${project.clientId}`)
+                navigate(`/client/${customerId}/project/${project.customerId}`)
               }
             >
               View Details
