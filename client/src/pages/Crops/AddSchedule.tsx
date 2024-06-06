@@ -16,24 +16,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { useAddCrop } from "@/services/crop/cropServiceHooks";
+import { useUpdateCrop } from "@/services/crop/cropServiceHooks";
 import { CropType } from "@/services/crop/types";
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-export const AddCrop = () => {
+export const AddSchedule = () => {
   const navigate = useNavigate();
-  const form = useForm<CropType>({
-    defaultValues: {
-      cropId: "",
-      cropName: "",
-    },
-  });
-  const addCrop = useAddCrop({
+  const form = useForm<CropType>();
+  const addCropSchedule = useUpdateCrop({
     onSuccess: () => {
       toast({
-        title: "Crop added successfully",
+        title: "Crop schedule added successfully",
         variant: "success",
       } as any);
       navigate("/crops");
@@ -41,7 +36,7 @@ export const AddCrop = () => {
   });
 
   const handleAdd = (data: CropType) => {
-    addCrop.mutate(data);
+    addCropSchedule.mutate(data);
   };
   return (
     <Dialog>

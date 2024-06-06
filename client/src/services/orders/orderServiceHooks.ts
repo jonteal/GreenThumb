@@ -5,6 +5,9 @@ import { OrderType } from "./types";
 const endpoint = "order";
 export const baseClientQueryKey = "order";
 
+export const orderStatuses = ["SCHEDULED", "DELIVERED", "PICKEDUP"] as const;
+export const paymentStatuses = ["onDelivery", "onPickup"] as const;
+
 export const useGetOrders = () =>
   useQuery<OrderType[]>({
     queryKey: [baseClientQueryKey],
