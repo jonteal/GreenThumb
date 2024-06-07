@@ -2,89 +2,22 @@
   {
     "cropId": "123",
     "cropName": "Broccoli",
-    "growSchedule": [
-      {
-        "day": 1,
-        "task": "Prep Trays",
-        "info": "Add soil to trays"
-      },
-      {
-        "day": 1,
-        "task": "Seed",
-        "info": "Put seeds soil and mist heavily to initiate germination"
-      },
-      {
-        "day": 1,
-        "task": "Germinate",
-        "info": "Put tray on shelf with tray on top with added weight"
-      },
-      {
-        "day": 3,
-        "task": "Light",
-        "info": "Set tray under grow light and begin light phase."
-      },
-      {
-        "day": 6,
-        "task": "Harvest",
-        "info": "Harvest crop and bag per ounce. After completing that, empty and sanitize trays."
-      }
-    ],
-    "cropInfo": {
-      "yieldAmount": 175,
-      "unit": "g",
-      "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
-    }
+    "yieldAmount": 175,
+    "unit": "g",
+    "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   },
   {
     "cropId": "456",
     "cropName": "Speckled Pead",
-    "growSchedule": [
-      {
-        "day": 1,
-        "task": "Prep Trays",
-        "info": "Add soil to trays"
-      },
-      {
-        "day": 1,
-        "task": "Seed",
-        "info": "Put seeds soil and mist heavily to initiate germination"
-      },
-      {
-        "day": 1,
-        "task": "Germinate",
-        "info": "Put tray on shelf with tray on top with added weight"
-      }
-    ],
-    "cropInfo": {
-      "yieldAmount": 175,
-      "unit": "g",
-      "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
-    }
+    "yieldAmount": 175,
+    "unit": "g",
+    "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   },
   {
     "cropId": "789",
     "cropName": "Radish",
-    "growSchedule": [
-      {
-        "day": 1,
-        "task": "Prep Trays",
-        "info": "Add soil to trays"
-      },
-      {
-        "day": 1,
-        "task": "Seed",
-        "info": "Put seeds soil and mist heavily to initiate germination"
-      },
-      {
-        "day": 1,
-        "task": "Germinate",
-        "info": "Put tray on shelf with tray on top with added weight"
-      }
-    ],
-    "cropInfo": {
-      "yieldAmount": 175,
-      "unit": "g",
-      "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
-    }
+    "yieldAmount": 175,
+    "unit": "g",
+    "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   }
 ]

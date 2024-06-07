@@ -5,6 +5,14 @@ import { CropType } from "./types";
 const endpoint = "crop";
 export const baseClientQueryKey = "crop";
 
+export const cropTasks = [
+  "Prep Trays",
+  "Seed",
+  "Germinate",
+  "Light",
+  "Harvest",
+] as const;
+
 export const useGetCrops = () =>
   useQuery<CropType[]>({
     queryKey: [baseClientQueryKey],

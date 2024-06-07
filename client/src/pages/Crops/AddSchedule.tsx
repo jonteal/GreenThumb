@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import {
   Form,
   FormControl,
@@ -15,17 +8,24 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import { useUpdateCrop } from "@/services/crop/cropServiceHooks";
-import { CropType } from "@/services/crop/types";
-import { Plus } from "lucide-react";
+import { cropTasks } from "@/services/crop/cropServiceHooks";
+import { useAddTask } from "@/services/task/taskServiceHooks";
+import { TaskType } from "@/services/task/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 export const AddSchedule = () => {
   const navigate = useNavigate();
-  const form = useForm<CropType>();
-  const addCropSchedule = useUpdateCrop({
+  const form = useForm<TaskType>();
+  const addTask = useAddTask({
     onSuccess: () => {
       toast({
         title: "Crop schedule added successfully",
@@ -35,48 +35,83 @@ export const AddSchedule = () => {
     },
   });
 
-  const handleAdd = (data: CropType) => {
-    addCropSchedule.mutate(data);
+  const handleAdd = (data: TaskType) => {
+    addTask.mutate(data);
   };
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Plus />
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Add crop</DialogTitle>
-        </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleAdd)}>
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleAdd)}>
+          <div className="flex flex-row">
             <FormField
               control={form.control}
-              name="cropName"
+              name="day"
               render={({ field }) => (
-                <FormItem>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <FormLabel>Crop Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          className="col-span-3"
-                          placeholder="Enter crop name"
-                          {...field}
-                        />
-                      </FormControl>
-                    </div>
-                  </div>
+                <FormItem className="mt-3 w-1/4 mr-5">
+                  <FormLabel>Day</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="col-span-3"
+                      // placeholder="Day"
+                      {...field}
+                    />
+                  </FormControl>
                 </FormItem>
               )}
             />
-            <DialogFooter>
-              <Button className="bg-green-600" type="submit">
-                Add crop!
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
+
+            <FormField
+              control={form.control}
+              name="task"
+              render={({ field }) => {
+                return (
+                  <FormItem className="mt-3 w-3/4">
+                    <FormLabel>Task</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a task" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {cropTasks.map((task) => (
+                          <SelectItem key={`task-${task}`} value={task}>
+                            {task}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                );
+              }}
+            />
+          </div>
+
+          <FormField
+            control={form.control}
+            name="info"
+            render={({ field }) => (
+              <FormItem className="mt-3">
+                <FormLabel>Info</FormLabel>
+                <FormControl>
+                  <Input
+                    className="col-span-3"
+                    placeholder="Enter task info..."
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <Button className="bg-green-600 mt-3" type="submit">
+            Add task!
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 };

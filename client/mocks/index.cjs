@@ -3,6 +3,7 @@ const customerMock = require("./data/customerMock.json");
 const projectMock = require("./data/projectMock.json");
 const cropMock = require("./data/cropMock.json");
 const orderMock = require("./data/orderMock.json");
+const taskMock = require("./data/taskMock.json");
 
 const serverPort = 5174;
 
@@ -25,6 +26,7 @@ export const startMockServer = () => {
       project: projectMock,
       crop: cropMock,
       order: orderMock,
+      task: taskMock,
     });
 
     const middleware = jsonServer.defaults();
@@ -34,6 +36,7 @@ export const startMockServer = () => {
       jsonServer.rewriter({
         "/*": "/$1",
         "/crop/:cropId": "/crop?cropId=:cropId",
+        "/task/:cropId": "/task?cropId=:cropId",
         "/order/:orderId": "/order?orderId=:orderId",
         "/customer/:customerId": "/customer?customerId=:customerId",
         "/customer/:customerId/project": "/project?customerId=:customerId",
