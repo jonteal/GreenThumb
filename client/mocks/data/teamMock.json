@@ -1,0 +1,29 @@
+[
+  {
+    "id": "tm1",
+    "teamMemberId": "tm1",
+    "firstName": "Ron",
+    "lastName": "Weasley",
+    "jobTitle": "Manager",
+    "phoneNumber": "895-594-3903",
+    "email": "ron@greenthumb.com"
+  },
+  {
+    "id": "tm2",
+    "teamMemberId": "tm2",
+    "firstName": "Hermion",
+    "lastName": "Granger",
+    "jobTitle": "Greenhouse Lead",
+    "phoneNumber": "895-893-9673",
+    "email": "hermione@greenthumb.com"
+  },
+  {
+    "id": "tm3",
+    "teamMemberId": "tm3",
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "jobTitle": "Administrator",
+    "phoneNumber": "895-930-2787",
+    "email": "harry@greenthumb.com"
+  }
+]

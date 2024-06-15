@@ -1,54 +1,43 @@
+import { useEffect, useState } from "react";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import { AddCrop } from "./AddCrop";
+import { TasksTable } from "./TasksTable/TasksTable";
+import { TaskForm } from "./TaskForm";
+
 import {
   useGetCropById,
   useGetCrops,
-  useUpdateCrop,
+  // useUpdateCrop,
 } from "@/services/crop/cropServiceHooks";
-import { useState } from "react";
-import { AddSchedule } from "./AddSchedule";
-
-import { toast } from "@/components/ui/use-toast";
-import { CropType, GrowScheduleListType } from "@/services/crop/types";
-import { AddTaskForm } from "./AddTaskForm";
-import { Tasks } from "./Tasks";
 import { useGetTasks } from "@/services/task/taskServiceHooks";
-import { TasksTable } from "./TasksTable/TasksTable";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Crops = () => {
+  const { cropId } = useParams();
+  const navigate = useNavigate();
   const { data: crops, isLoading } = useGetCrops();
   const [activeItem, setActiveItem] = useState(crops?.[0].cropId);
   const [addingTask, setAddingTask] = useState(false);
   const { data: crop } = useGetCropById(activeItem || "");
   const { data: tasksData } = useGetTasks();
 
-  console.log("tasksData: ", tasksData);
+  useEffect(() => {
+    setActiveItem(crop?.cropId);
+    console.log("rendered");
+  }, [cropId]);
 
-  const updateCrop = useUpdateCrop({
-    onSuccess: () => {
-      toast({
-        title: "Customer added successfully",
-        variant: "success",
-      } as any);
-    },
-  });
-  console.log("crop: ", crop);
+  console.log("cropId from param: ", cropId);
 
-  const tasks: GrowScheduleListType = [
-    {
-      taskId: "1",
-      day: 1,
-      task: "Germinate",
-      info: "Soak seeds to prepare for germination",
-    },
-    {
-      taskId: "2",
-      day: 2,
-      task: "Seed",
-      info: "Spread seeds on tray and cover with weight",
-    },
-  ];
+  // const updateCrop = useUpdateCrop({
+  //   onSuccess: () => {
+  //     toast({
+  //       title: "Customer added successfully",
+  //       variant: "success",
+  //     } as any);
+  //   },
+  // });
 
   return (
     <div className="flex flex-row justify-between">
@@ -63,7 +52,10 @@ export const Crops = () => {
             <span
               key={crop.cropId}
               className="font-bold hover:underline"
-              onClick={() => setActiveItem(crop.cropId)}
+              onClick={() => {
+                console.log("cropId from click: ", crop.cropId);
+                navigate(`/crops/${crop.cropId}`);
+              }}
             >
               {crop.cropName}
             </span>
@@ -78,10 +70,8 @@ export const Crops = () => {
           <Plus onClick={() => setAddingTask(!addingTask)} />
         </CardHeader>
         <CardContent>
-          {/* <AddTaskForm /> */}
-          {addingTask && <AddSchedule />}
+          {addingTask && <TaskForm />}
           <TasksTable />
-          {/* <Tasks tasks={tasks} /> */}
         </CardContent>
       </Card>
 

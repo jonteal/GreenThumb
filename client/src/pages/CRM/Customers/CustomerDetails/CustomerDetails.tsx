@@ -8,6 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CustomerDetailsCard } from "./components/CustomerDetailsCard";
 import { Button } from "@/components/ui/button";
 import { ProjectsTable } from "./Project/components/ProjectTable/ProjectTable";
+import { OrderTable } from "@/pages/Orders/OrdersTable/OrdersTable";
+import { OrdersTable } from "./components/OrdersTable";
 
 export const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ export const CustomerDetails = () => {
   const { data: customer, isLoading } = useGetCustomerById(customerId);
 
   const deleteCustomerMutation = useDeleteCustomer();
+
+  console.log("test details component");
 
   const handleDelete = () => {
     deleteCustomerMutation.mutate(customerId, {
@@ -50,7 +54,8 @@ export const CustomerDetails = () => {
       </header>
       <div>
         <CustomerDetailsCard customer={customer} />
-        <ProjectsTable />
+        {/* <ProjectsTable /> */}
+        <OrdersTable />
       </div>
     </>
   );

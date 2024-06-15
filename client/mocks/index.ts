@@ -4,6 +4,7 @@ import projectMock from "./data/projectMock.json";
 import cropMock from "./data/cropMock.json";
 import orderMock from "./data/orderMock.json";
 import taskMock from "./data/taskMock.json";
+import teamMock from "./data/teamMock.json";
 
 const serverPort = 5174;
 
@@ -33,6 +34,9 @@ export const startMockServer = () => {
     const taskRouter = jsonServer.router({ task: taskMock });
     taskRouter.db._.id = "taskId";
 
+    const teamRouter = jsonServer.router({ team: teamMock });
+    teamRouter.db._.id = "teamMemberId";
+
     const middleware = jsonServer.defaults();
 
     mockServer.use(middleware);
@@ -43,8 +47,10 @@ export const startMockServer = () => {
         "/customer/:customerId": "/customer?customerId=:customerId",
         "/order/:orderId": "/order?orderId=:orderId",
         "/customer/:customerId/project": "/project?customerId=:customerId",
+        "/customer/:customerId/order": "/order?customerId=:customerId",
         "/crop/:cropId": "/crop?cropId=:cropId",
         "/crop/:cropId/task": "/task?cropId=:cropId",
+        "/team/:teamMemberId": "/team?teamMemberId=:teamMemberId",
         // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
       })
     );
@@ -54,6 +60,7 @@ export const startMockServer = () => {
     mockServer.all(["/order", "/order/*"], orderRouter);
     mockServer.all(["/customer", "/customer/*"], customerRouter);
     mockServer.all(["/project", "/project/*"], projectRouter);
+    mockServer.all(["/team", "/team/*"], teamRouter);
 
     mockServer.listen(serverPort, () => {
       console.log(`JSON server is running on http://localhost:${serverPort}/`);

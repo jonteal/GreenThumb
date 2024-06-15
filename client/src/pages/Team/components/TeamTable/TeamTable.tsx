@@ -29,16 +29,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import {
-  useGetTasks,
-  useGetTasksByCropId,
-} from "@/services/task/taskServiceHooks";
-import { TasksTableColumns } from "./tasksTableColumns";
+import { useGetTeam } from "@/services/team/teamServiceHooks";
+import { teamTableColumns } from "./teamTableColumns";
 
-export const TasksTable = ({ cropId }: { cropId: string }) => {
-  const { data: tasks, isLoading } = useGetTasksByCropId(cropId);
+export const TeamTable = () => {
+  const { data: teamData } = useGetTeam();
 
-  console.log("tasks: ", tasks);
+  console.log("teamData: ", teamData);
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -46,8 +43,8 @@ export const TasksTable = ({ cropId }: { cropId: string }) => {
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: tasks || [],
-    columns: TasksTableColumns,
+    data: teamData || [],
+    columns: teamTableColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -68,10 +65,12 @@ export const TasksTable = ({ cropId }: { cropId: string }) => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter task by day..."
-          value={(table.getColumn("day")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter team names..."
+          value={
+            (table.getColumn("firstName")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
-            table.getColumn("day")?.setFilterValue(event.target.value)
+            table.getColumn("firstName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -142,7 +141,7 @@ export const TasksTable = ({ cropId }: { cropId: string }) => {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={TasksTableColumns.length}
+                  colSpan={teamTableColumns.length}
                   className="h-24 text-center"
                 >
                   No results.

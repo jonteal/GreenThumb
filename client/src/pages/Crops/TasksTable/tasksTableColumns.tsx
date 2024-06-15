@@ -4,6 +4,7 @@ import { TaskType } from "@/services/task/types";
 
 import { CaretSortIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
+import { Pencil, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +46,7 @@ export const TasksTableColumns: ColumnDef<TaskType>[] = [
     },
     cell: ({ row }) => (
       <Link
-        to={`/crm/customer/${row.original.taskId}`}
+        to={`/crops/${row.original.taskId}`}
         className="capitalize text-left hover:underline"
       >
         {row.getValue("day")}
@@ -90,48 +91,20 @@ export const TasksTableColumns: ColumnDef<TaskType>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const customer = row.original;
-      const navigate = useNavigate();
+      //   const task = row.original;
+      //   const navigate = useNavigate();
 
       return (
         <>
-          {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigate(`/customer/${customer.customerId}`)}
-            >
-              Details
-            </DropdownMenuItem>
-            <DropdownMenuItem
-            // onClick={}
-            >
-              Delete
-            </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
-          {/* <Button
-            className="bg-blue-600 text-neutral-50 mr-1"
-            onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
-          >
-            Details
-          </Button> */}
-          <Button className="bg-red-600 text-neutral-50">Delete</Button>
-          <Button
-            className="bg-green-600 text-neutral-50 ml-1"
-            // onClick={() =>
-            //   navigate(`/crm/customer/${customer.customerId}/edit`)
-            // }
-          >
-            Edit
-          </Button>
+          <div className="flex flex-row">
+            <Pencil
+              //   onClick={() =>
+              //     navigate(`/crm/customer/${customer.customerId}/edit`)
+              //   }
+              className="text-green-600 text-sm mr-2"
+            />
+            <Trash2 className="text-red-600 text-sm" />
+          </div>
         </>
       );
     },

@@ -14,7 +14,7 @@ export const CustomerDetailsCard = ({
 }: {
   customer: CustomerType;
 }) => {
-  console.log("customer: ", customer);
+  // console.log("customer: ", customer);
   return (
     <Card>
       <CardHeader>

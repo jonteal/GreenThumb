@@ -7,11 +7,18 @@ export const baseClientQueryKey = "order";
 
 export const orderStatuses = ["SCHEDULED", "DELIVERED", "PICKEDUP"] as const;
 export const paymentStatuses = ["onDelivery", "onPickup"] as const;
+export const packagingOptions = ["Small", "Medium", "Large"] as const;
 
 export const useGetOrders = () =>
   useQuery<OrderType[]>({
     queryKey: [baseClientQueryKey],
     queryFn: async () => api.get(endpoint),
+  });
+
+export const useGetOrdersByCustomerId = (customerId: string) =>
+  useQuery<OrderType[]>({
+    queryKey: [`${baseClientQueryKey}-${customerId}`],
+    queryFn: async () => api.get(`customer/${customerId}/order`),
   });
 
 export const useGetOrderById = (orderId: string) =>

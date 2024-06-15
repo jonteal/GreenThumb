@@ -23,8 +23,8 @@ export const CustomerAdd = () => {
   };
 
   return (
-    <div>
-      <h1>Add Customer</h1>
+    <div className="w-full ml-5">
+      <h1 className="mb-3 font-semibold">Add Customer</h1>
       <CustomerForm onSubmit={handleAdd} />
     </div>
   );

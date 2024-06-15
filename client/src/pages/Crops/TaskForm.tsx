@@ -22,7 +22,7 @@ import { TaskType } from "@/services/task/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-export const AddSchedule = () => {
+export const TaskForm = () => {
   const navigate = useNavigate();
   const form = useForm<TaskType>();
   const addTask = useAddTask({

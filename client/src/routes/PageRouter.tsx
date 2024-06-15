@@ -13,6 +13,8 @@ import { Orders } from "@/pages/Orders/Orders";
 import { Production } from "@/pages/Production/Production";
 import { Products } from "@/pages/Products/Products";
 import { Schedule } from "@/pages/Schedule/Schedule";
+import { Team } from "@/pages/Team/Team";
+import { TeamMemberDetails } from "@/pages/Team/components/TeamMemberDetails";
 import { Navigate, Route, Routes, createBrowserRouter } from "react-router-dom";
 
 export const PageRouter = () => {
@@ -24,6 +26,7 @@ export const PageRouter = () => {
       <Route path="/crm" element={<CRM />} />
       <Route path="/products" element={<Products />} />
       <Route path="/crops" element={<Crops />} />
+      <Route path="/crops/:cropId" element={<Crops />} />
       <Route path="/orders" element={<Orders />} />
       <Route
         path="/crm/customer"
@@ -43,6 +46,8 @@ export const PageRouter = () => {
         path="/crm/customer/:customerId/project/add"
         element={<ProjectAdd />}
       />
+      <Route path="/team" element={<Team />} />
+      <Route path="/team/:teamMemberId" element={<TeamMemberDetails />} />
     </Routes>
   );
 };
