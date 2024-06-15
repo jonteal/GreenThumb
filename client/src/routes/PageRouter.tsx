@@ -14,7 +14,8 @@ import { Production } from "@/pages/Production/Production";
 import { Products } from "@/pages/Products/Products";
 import { Schedule } from "@/pages/Schedule/Schedule";
 import { Team } from "@/pages/Team/Team";
-import { TeamMemberDetails } from "@/pages/Team/components/TeamMemberDetails";
+import { TeamMemberAdd } from "@/pages/Team/TeamMemberAdd";
+import { TeamMemberDetails } from "@/pages/Team/TeamMemberDetails/TeamMemberDetails";
 import { Navigate, Route, Routes, createBrowserRouter } from "react-router-dom";
 
 export const PageRouter = () => {
@@ -47,6 +48,7 @@ export const PageRouter = () => {
         element={<ProjectAdd />}
       />
       <Route path="/team" element={<Team />} />
+      <Route path="/team/add" element={<TeamMemberAdd />} />
       <Route path="/team/:teamMemberId" element={<TeamMemberDetails />} />
     </Routes>
   );

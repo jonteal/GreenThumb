@@ -17,14 +17,15 @@ export const useGetTeamMemberById = (teamMemberId: string) =>
     queryFn: async () => api.get(`${endpoint}/${teamMemberId}`),
   });
 
-// export const useAddTask = ({ onSuccess }: { onSuccess: () => void }) =>
-//   useMutation<TaskType, Error, TaskType>({
-//     mutationFn: async (newTask: TaskType) => api.post(endpoint, newTask),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
-//       onSuccess();
-//     },
-//   });
+export const useAddTeamMember = ({ onSuccess }: { onSuccess: () => void }) =>
+  useMutation<TeamMemberType, Error, TeamMemberType>({
+    mutationFn: async (newTeamMember: TeamMemberType) =>
+      api.post(endpoint, newTeamMember),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
+      onSuccess();
+    },
+  });
 
 // export const useUpdateTask = (
 //   options: MutationOptions<TaskType, Error, TaskType>
