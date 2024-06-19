@@ -27,7 +27,7 @@ export const CustomerDetails = () => {
           title: "Customer deleted successfully",
           variant: "success" as any,
         });
-        navigate("/customer");
+        navigate("/crm/customer");
       },
       onError: (error) => {
         toast({

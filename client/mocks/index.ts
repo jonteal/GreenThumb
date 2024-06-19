@@ -44,7 +44,7 @@ export const startMockServer = () => {
       "*",
       jsonServer.rewriter({
         "/*": "/$1",
-        "/customer/:customerId": "/customer?customerId=:customerId",
+        "/customer/:customerId": "/customer/:customerId",
         "/order/:orderId": "/order?orderId=:orderId",
         "/customer/:customerId/project": "/project?customerId=:customerId",
         "/customer/:customerId/order": "/order?customerId=:customerId",

@@ -1,8 +1,16 @@
+import { DeleteButton } from "@/components/DeleteButton";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import { CustomerType } from "@/services/customer/types";
-import { CaretSortIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -148,43 +156,45 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
 
       return (
         <>
-          {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigate(`/customer/${customer.customerId}`)}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <DotsHorizontalIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
+              >
+                Details
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  navigate(`/crm/customer/${customer.customerId}/edit`)
+                }
+              >
+                Edit
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <div className="flex flex-row">
+            <Button
+              className="bg-blue-600 text-neutral-50 mr-1"
+              onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
             >
               Details
-            </DropdownMenuItem>
-            <DropdownMenuItem
-            // onClick={}
+            </Button>
+            <Button
+              className="bg-green-600 text-neutral-50 ml-1"
+              onClick={() =>
+                navigate(`/crm/customer/${customer.customerId}/edit`)
+              }
             >
-              Delete
-            </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
-          <Button
-            className="bg-blue-600 text-neutral-50 mr-1"
-            onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
-          >
-            Details
-          </Button>
-          <Button className="bg-red-600 text-neutral-50">Delete</Button>
-          <Button
-            className="bg-green-600 text-neutral-50 ml-1"
-            onClick={() =>
-              navigate(`/crm/customer/${customer.customerId}/edit`)
-            }
-          >
-            Edit
-          </Button>
+              Edit
+            </Button>
+          </div>
         </>
       );
     },
