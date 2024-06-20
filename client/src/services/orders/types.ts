@@ -20,7 +20,25 @@ export type OrderType = {
   startDate: string;
   dueDate: string;
   repeat: string;
-  templateId: string;
+  // templateId: string; todo: maybe add this later
   paymentStatus: PaymentStatusType;
   items: OrderItemType[];
+};
+
+export type OrderItemTestType = {
+  name: string;
+  cropName: string;
+  packaging: string;
+  quantity: number;
+  unitPrice: number;
+};
+
+export type OrderFormInputsType = {
+  orderId: string;
+  customer: string;
+  customerId: string;
+  items: OrderItemTestType[];
+  repeat: string;
+  paymentStatus: "onDelivery" | "onPickup";
+  total: number;
 };

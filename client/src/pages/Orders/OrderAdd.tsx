@@ -7,7 +7,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -16,38 +16,55 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { useGetCrops } from "@/services/crop/cropServiceHooks";
+// import { useGetCrops } from "@/services/crop/cropServiceHooks";
 import { useGetCustomers } from "@/services/customer/customerServiceHooks";
 import {
-  orderStatuses,
-  packagingOptions,
-  paymentStatuses,
+  //   orderStatuses,
+  //   packagingOptions,
+  //   paymentStatuses,
   useAddOrder,
 } from "@/services/orders/orderServiceHooks";
 import { OrderItemType, OrderType } from "@/services/orders/types";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { z } from "zod";
+// import { z } from "zod";
 
-const orderSchema = z.object({
-  orderId: z.string(),
-  customerId: z.string(),
-  customer: z.string(),
-  total: z.number(),
-  status: z.enum(orderStatuses),
-  startDate: z.string(),
-  dueDate: z.string(),
-  repeat: z.string(),
-  templateId: z.string(),
-  paymentStatus: z.enum(paymentStatuses),
-});
+// const orderSchema = z.object({
+//   orderId: z.string(),
+//   customerId: z.string(),
+//   customer: z.string(),
+//   total: z.number(),
+//   status: z.enum(orderStatuses),
+//   startDate: z.string(),
+//   dueDate: z.string(),
+//   repeat: z.string(),
+//   templateId: z.string(),
+//   paymentStatus: z.enum(paymentStatuses),
+// });
+
+// -----------------------------------------
+
+// NOTES ON HOW TO DO THIS
+
+// 1.
+
+// ------------------------------------------
 
 export const OrderAdd = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  //   const [orderItems, setOrderItems] = useState([]);
+  //   const [orderItem, setOrderItem] = useState({
+  //     cropId: "",
+  //     cropName: "",
+  //     packaging: "",
+  //     unitPrice: 0,
+  //     quantity: 0,
+  //   });
   const { data: customers, isLoading: isCustomersLoading } = useGetCustomers();
-  const { data: products, isLoading: isProductLoading } = useGetCrops();
+  //   const { data: products, isLoading: isProductLoading } = useGetCrops();
 
   const addOrder = useAddOrder({
     onSuccess: () => {
@@ -60,7 +77,7 @@ export const OrderAdd = () => {
   });
 
   const form = useForm<OrderType>({
-    resolver: zodResolver(orderSchema),
+    // resolver: zodResolver(orderSchema),
     defaultValues: {
       orderId: "",
     },
@@ -70,7 +87,18 @@ export const OrderAdd = () => {
     addOrder.mutate(data);
   };
 
-  let itemsList: OrderItemType[] = [];
+  //   const handleAddItem = (e: any) => {
+  //     const formData = new FormData(e.target)
+
+  //     const newItem = {
+  //         cropId,
+  //         text,
+  //         cropName,
+  //         packaging,
+  //         unitPrice,
+  //         quantity,
+  //     }
+  //   }
 
   return (
     <Form {...form}>
@@ -95,9 +123,9 @@ export const OrderAdd = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {customers?.map((customer) => (
+                    {customers?.map((customer, index) => (
                       <SelectItem
-                        key={`status-${customer}`}
+                        key={`status-${customer}-${index}`}
                         value={customer.customer}
                       >
                         {customer.customer}
@@ -112,105 +140,7 @@ export const OrderAdd = () => {
 
         <Card className="w-full mt-6">
           <CardHeader className="font-bold">Items</CardHeader>
-          <CardContent>
-            {itemsList.map((item, index) => (
-              <div key={`${item.cropName}-${index}`}>
-                <FormField
-                  control={form.control}
-                  name={`items.${index}.cropName`}
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="w-full mt-6">
-                        <FormLabel className="font-bold">Product</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a product" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {products?.map((product) => (
-                              <SelectItem
-                                key={`status-${product}`}
-                                value={product.cropName}
-                              >
-                                {product.cropName}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name={`items.${index}.packaging`}
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="w-full mt-6">
-                        <FormLabel className="font-bold">Packaging</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a packaging option" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {packagingOptions?.map((size) => (
-                              <SelectItem key={`status-${size}`} value={size}>
-                                {size}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FormItem>
-                    );
-                  }}
-                />
-
-                <FormField
-                  control={form.control}
-                  name={`items.${index}.unitPrice`}
-                  render={({ field }) => (
-                    <FormItem className="mt-3">
-                      <FormLabel>Info</FormLabel>
-                      <FormControl>
-                        <Input
-                          className="col-span-3"
-                          placeholder=""
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name={`items.${index}.quantity`}
-                  render={({ field }) => (
-                    <FormItem className="mt-3">
-                      <FormLabel>Quantity</FormLabel>
-                      <FormControl>
-                        <Input
-                          className="col-span-3"
-                          placeholder="Enter quantity..."
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            ))}
-          </CardContent>
+          <CardContent></CardContent>
         </Card>
 
         <Button>Add Item</Button>

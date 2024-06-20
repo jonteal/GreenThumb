@@ -1,6 +1,6 @@
 import { MutationOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { api, queryClient } from "@/services/api";
-import { OrderType } from "./types";
+import { OrderFormInputsType, OrderItemTestType, OrderType } from "./types";
 
 const endpoint = "order";
 export const baseClientQueryKey = "order";
@@ -8,6 +8,7 @@ export const baseClientQueryKey = "order";
 export const orderStatuses = ["SCHEDULED", "DELIVERED", "PICKEDUP"] as const;
 export const paymentStatuses = ["onDelivery", "onPickup"] as const;
 export const packagingOptions = ["Small", "Medium", "Large"] as const;
+export const repeatOptions = ["No", "Weekly", "Monthly"] as const;
 
 export const useGetOrders = () =>
   useQuery<OrderType[]>({
@@ -28,8 +29,9 @@ export const useGetOrderById = (orderId: string) =>
   });
 
 export const useAddOrder = ({ onSuccess }: { onSuccess: () => void }) =>
-  useMutation<OrderType, Error, OrderType>({
-    mutationFn: async (newOrder: OrderType) => api.post(endpoint, newOrder),
+  useMutation<OrderFormInputsType, Error, OrderFormInputsType>({
+    mutationFn: async (newOrder: OrderFormInputsType) =>
+      api.post(endpoint, newOrder),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
       onSuccess();
