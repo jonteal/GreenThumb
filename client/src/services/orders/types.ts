@@ -26,19 +26,21 @@ export type OrderType = {
 };
 
 export type OrderItemTestType = {
-  name: string;
+  id?: string;
   cropName: string;
   packaging: string;
   quantity: number;
-  unitPrice: number;
+  price: number;
 };
 
 export type OrderFormInputsType = {
-  orderId: string;
-  customer: string;
-  customerId: string;
+  orderId?: string;
+  customer?: string;
+  customerId?: string;
   items: OrderItemTestType[];
-  repeat: string;
-  paymentStatus: "onDelivery" | "onPickup";
-  total: number;
+  repeat?: string;
+  paymentStatus?: "onDelivery" | "onPickup";
+  status: StatusType;
+  total?: number;
+  price?: number;
 };

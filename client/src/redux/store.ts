@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import orderReducer from "./slice/orderSlice";
 
-const rootReducer = {
-  order: orderReducer,
-};
-
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    order: orderReducer,
+  },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

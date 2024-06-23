@@ -6,12 +6,8 @@ import { Link } from "react-router-dom";
 
 export const Orders = () => {
   return (
-    <Card>
-      {/* <CardHeader className="text-md font-semibold flex flex-row justify-center py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
-        Graphs
-      </CardHeader> */}
-
-      <Button asChild variant="outline">
+    <Card className="p-3">
+      <Button asChild variant="outline" className="bg-green-600 text-slate-50">
         <Link to="/orders/add">Add Order</Link>
       </Button>
 

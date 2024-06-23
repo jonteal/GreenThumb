@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import {
+  orderStatuses,
   packagingOptions,
   paymentStatuses,
   repeatOptions,
@@ -16,7 +15,10 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { OrderFormInputsType } from "@/services/orders/types";
+import {
+  OrderFormInputsType,
+  OrderItemTestType,
+} from "@/services/orders/types";
 import {
   Select,
   SelectContent,
@@ -29,45 +31,16 @@ import { Button } from "@/components/ui/button";
 import { useGetCrops } from "@/services/crop/cropServiceHooks";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Trash } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import addToOrder from "../../redux/slice/orderSlice";
-
-// type OrderItem = {
-//   name: string;
-//   quantity: number;
-// };
-
-// type OrderFormInputs = {
-//   items: OrderItem[];
-// };
-
-const submitOrder = async (order: OrderFormInputsType) => {
-  const response = await axios.post("/api/orders", order);
-  return response.data;
-};
 
 export const OrderAddTest: React.FC = () => {
   const { toast } = useToast();
   const { data: customers, isLoading: isCustomersLoading } = useGetCustomers();
-  const order = useSelector((state: any) => state.order);
-  const dispatch = useDispatch();
-  const handleAddToOrder = () => {
-    dispatch(
-      addToOrder({
-        ...data,
-        quantity: 1,
-      })
-    );
-    alert("Successfully!");
-  };
-  const { data: crops } = useGetCrops();
 
-  console.log("order: ", order);
+  const { data: crops } = useGetCrops();
 
   const form = useForm<OrderFormInputsType>({
     defaultValues: {
-      items: [{ name: "", quantity: 1 }],
+      items: [{ cropName: "", quantity: 0, price: 0, packaging: "Medium" }],
     },
   });
 
@@ -87,6 +60,8 @@ export const OrderAddTest: React.FC = () => {
 
   const onSubmit = (data: OrderFormInputsType) => {
     addOrder.mutate(data);
+
+    form.reset();
   };
 
   return (
@@ -209,7 +184,7 @@ export const OrderAddTest: React.FC = () => {
                 />
                 <FormField
                   control={form.control}
-                  name={`items.${index}.unitPrice`}
+                  name={`items.${index}.price`}
                   render={({ field }) => (
                     <FormItem className="w-full mr-10">
                       <FormLabel>Unit Price</FormLabel>
@@ -231,83 +206,119 @@ export const OrderAddTest: React.FC = () => {
           </CardContent>
         </Card>
 
-        <FormField
-          control={form.control}
-          name="repeat"
-          render={({ field }) => {
-            return (
-              <FormItem className="w-full mr-10 mt-3">
-                <FormLabel className="font-bold">Repeat</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select repeat option" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {repeatOptions?.map((option, index) => (
-                      <SelectItem
-                        key={`status-${option}-${index}`}
-                        value={option}
-                      >
-                        {option}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            );
-          }}
-        />
+        <div className="flex flex-row">
+          <FormField
+            control={form.control}
+            name="repeat"
+            render={({ field }) => {
+              return (
+                <FormItem className="w-full mr-10 mt-3">
+                  <FormLabel className="font-bold">Repeat</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select repeat option" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {repeatOptions?.map((option, index) => (
+                        <SelectItem
+                          key={`status-${option}-${index}`}
+                          value={option}
+                        >
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
+          />
 
-        <FormField
-          control={form.control}
-          name="repeat"
-          render={({ field }) => {
-            return (
-              <FormItem className="w-full mr-10 mt-3">
-                <FormLabel className="font-bold">Payment Status</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select payment status" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {paymentStatuses?.map((status, index) => (
-                      <SelectItem
-                        key={`status-${status}-${index}`}
-                        value={status}
-                      >
-                        {status}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            );
-          }}
-        />
+          <FormField
+            control={form.control}
+            name="repeat"
+            render={({ field }) => {
+              return (
+                <FormItem className="w-full mr-10 mt-3">
+                  <FormLabel className="font-bold">Payment Status</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select payment status" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {paymentStatuses?.map((status, index) => (
+                        <SelectItem
+                          key={`status-${status}-${index}`}
+                          value={status}
+                        >
+                          {status}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
+          />
 
-        <h3 className="font-bold mt-3">Total: {order.total}</h3>
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => {
+              return (
+                <FormItem className="w-full mr-10 mt-3">
+                  <FormLabel className="font-bold">Order Status</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select payment status" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {orderStatuses?.map((status, index) => (
+                        <SelectItem
+                          key={`status-${status}-${index}`}
+                          value={status}
+                        >
+                          {status}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
+          />
+        </div>
 
-        <div className="mt-3">
+        {/* <div className="mt-3">
+          <h3 className="font-semibold">Total Quantity: {totalQuantity}</h3>
+          <h3 className="font-semibold mt-3">Total Price: ${totalPrice}</h3>
+        </div> */}
+
+        <div className="mt-5">
           <Button
             className="mr-3 bg-green-600"
             type="button"
             onClick={() => {
               append({
-                name: "",
-                quantity: 1,
+                quantity: 0,
                 cropName: "",
                 packaging: "Medium",
-                unitPrice: 0,
+                price: 0,
               });
             }}
           >

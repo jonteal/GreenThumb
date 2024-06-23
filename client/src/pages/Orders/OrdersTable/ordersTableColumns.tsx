@@ -1,4 +1,3 @@
-import { DeleteButton } from "@/components/DeleteButton";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -160,23 +159,6 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize text-left">{row.getValue("repeat")}</div>
-    ),
-  },
-  {
-    accessorKey: "templateId",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Template ID
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("templateId")}</div>
     ),
   },
   {
