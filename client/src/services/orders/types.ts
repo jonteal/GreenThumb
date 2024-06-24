@@ -43,4 +43,6 @@ export type OrderFormInputsType = {
   status: StatusType;
   total?: number;
   price?: number;
+  startDate: string;
+  dueDate: string;
 };

@@ -179,22 +179,6 @@ export const CustomerTableColumns: ColumnDef<CustomerType>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <div className="flex flex-row">
-            <Button
-              className="bg-blue-600 text-neutral-50 mr-1"
-              onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
-            >
-              Details
-            </Button>
-            <Button
-              className="bg-green-600 text-neutral-50 ml-1"
-              onClick={() =>
-                navigate(`/crm/customer/${customer.customerId}/edit`)
-              }
-            >
-              Edit
-            </Button>
-          </div>
         </>
       );
     },

@@ -31,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { useGetCrops } from "@/services/crop/cropServiceHooks";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { DatePickerInput } from "@/components/DatePickerInput";
 
 export const OrderAddTest: React.FC = () => {
   const { toast } = useToast();
@@ -241,7 +242,7 @@ export const OrderAddTest: React.FC = () => {
 
           <FormField
             control={form.control}
-            name="repeat"
+            name="paymentStatus"
             render={({ field }) => {
               return (
                 <FormItem className="w-full mr-10 mt-3">
@@ -301,6 +302,24 @@ export const OrderAddTest: React.FC = () => {
                 </FormItem>
               );
             }}
+          />
+        </div>
+
+        <div className="flex flex-row">
+          <FormField
+            control={form.control}
+            name="startDate"
+            render={({ field }) => (
+              <DatePickerInput field={field} label="Start Date" />
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="dueDate"
+            render={({ field }) => (
+              <DatePickerInput field={field} label="Due Date" />
+            )}
           />
         </div>
 

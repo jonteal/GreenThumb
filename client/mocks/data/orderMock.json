@@ -2,6 +2,7 @@
   {
     "orderId": "0001",
     "customerId": "123",
+    "customer": "Benjamin Jackson",
     "total": 250,
     "status": "SCHEDULED",
     "startDate": "2024-03-06T00:00:00.000Z",
@@ -29,6 +30,7 @@
   {
     "orderId": "0002",
     "customerId": "123",
+    "customer": "Benjamin Jackson",
     "total": 220,
     "status": "SCHEDULED",
     "startDate": "2024-03-06T00:00:00.000Z",
@@ -49,6 +51,7 @@
   {
     "orderId": "0003",
     "customerId": "456",
+    "customer": "Lydia's Cafe",
     "total": 120,
     "status": "SCHEDULED",
     "startDate": "2024-03-06T00:00:00.000Z",
@@ -69,6 +72,7 @@
   {
     "orderId": "0004",
     "customerId": "456",
+    "customer": "Lydia's Cafe",
     "total": 300,
     "status": "SCHEDULED",
     "startDate": "2024-03-06T00:00:00.000Z",
@@ -89,6 +93,7 @@
   {
     "orderId": "0005",
     "customerId": "789",
+    "customer": "Jon Jackson",
     "total": 280,
     "status": "SCHEDULED",
     "startDate": "2024-03-06T00:00:00.000Z",

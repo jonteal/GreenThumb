@@ -53,7 +53,7 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
     ),
   },
   {
-    accessorKey: "customerId",
+    accessorKey: "customer",
     header: ({ column }) => {
       return (
         <Button
@@ -66,7 +66,7 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize text-left">{row.getValue("customerId")}</div>
+      <div className="capitalize text-left">{row.getValue("customer")}</div>
     ),
   },
   {
@@ -184,23 +184,20 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const customer = row.original;
+      const order = row.original;
       const navigate = useNavigate();
 
       return (
         <div className="flex flex-row">
           <Button
             className="bg-blue-600 text-neutral-50 mr-1"
-            onClick={() => navigate(`/crm/customer/${customer.customerId}`)}
+            onClick={() => navigate(`/orders/${order.orderId}`)}
           >
             Details
           </Button>
-          <Button className="bg-red-600 text-neutral-50">Delete</Button>
           <Button
             className="bg-green-600 text-neutral-50 ml-1"
-            onClick={() =>
-              navigate(`/crm/customer/${customer.customerId}/edit`)
-            }
+            onClick={() => navigate(`/orders/${order.order}/edit`)}
           >
             Edit
           </Button>
