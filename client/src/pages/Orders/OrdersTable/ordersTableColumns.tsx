@@ -197,7 +197,7 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
           </Button>
           <Button
             className="bg-green-600 text-neutral-50 ml-1"
-            onClick={() => navigate(`/orders/${order.order}/edit`)}
+            onClick={() => navigate(`/orders/${order.orderId}/edit`)}
           >
             Edit
           </Button>
