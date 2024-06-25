@@ -23,7 +23,7 @@ export const DatePickerInput = ({
 }) => {
   return (
     <FormItem className="flex flex-col w-full mr-10 mt-3">
-      <FormLabel className="pt-2">{label}</FormLabel>
+      <FormLabel className="pt-2 font-bold">{label}</FormLabel>
       <Popover>
         <PopoverTrigger asChild>
           <FormControl>

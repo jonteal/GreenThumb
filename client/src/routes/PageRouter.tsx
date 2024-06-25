@@ -7,9 +7,8 @@ import { Customers } from "@/pages/CRM/Customers/Customers";
 import { Crops } from "@/pages/Crops/Crops";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
-import { OrderAddTest } from "@/pages/Orders/OrderAddTest";
+import { OrderAdd } from "@/pages/Orders/OrderAdd";
 import { OrderDetails } from "@/pages/Orders/OrderDetails";
-import { OrderFormAdd } from "@/pages/Orders/OrderFormAdd";
 import { Orders } from "@/pages/Orders/Orders";
 import { Production } from "@/pages/Production/Production";
 import { Products } from "@/pages/Products/Products";
@@ -30,7 +29,7 @@ export const PageRouter = () => {
       <Route path="/crops" element={<Crops />} />
       <Route path="/crops/:cropId" element={<Crops />} />
       <Route path="/orders" element={<Orders />} />
-      <Route path="/orders/add" element={<OrderAddTest />} />
+      <Route path="/orders/add" element={<OrderAdd />} />
       <Route path="/orders/:orderId" element={<OrderDetails />} />
       <Route
         path="/crm/customer"

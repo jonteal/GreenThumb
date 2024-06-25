@@ -3,7 +3,7 @@ import { api, queryClient } from "@/services/api";
 import { OrderFormInputsType, OrderItemTestType, OrderType } from "./types";
 
 const endpoint = "order";
-export const baseClientQueryKey = "order";
+export const baseOrderQueryKey = "order";
 
 export const orderStatuses = ["SCHEDULED", "DELIVERED", "PICKEDUP"] as const;
 export const paymentStatuses = ["onDelivery", "onPickup"] as const;
@@ -12,19 +12,19 @@ export const repeatOptions = ["No", "Weekly", "Monthly"] as const;
 
 export const useGetOrders = () =>
   useQuery<OrderType[]>({
-    queryKey: [baseClientQueryKey],
+    queryKey: [baseOrderQueryKey],
     queryFn: async () => api.get(endpoint),
   });
 
 export const useGetOrdersByCustomerId = (customerId: string) =>
   useQuery<OrderType[]>({
-    queryKey: [`${baseClientQueryKey}-${customerId}`],
+    queryKey: [`${baseOrderQueryKey}-${customerId}`],
     queryFn: async () => api.get(`customer/${customerId}/order`),
   });
 
 export const useGetOrderById = (orderId: string) =>
   useQuery<OrderType>({
-    queryKey: [`${baseClientQueryKey}-${orderId}`],
+    queryKey: [`${baseOrderQueryKey}-${orderId}`],
     queryFn: async () => api.get(`${endpoint}/${orderId}`),
   });
 
@@ -33,7 +33,7 @@ export const useAddOrder = ({ onSuccess }: { onSuccess: () => void }) =>
     mutationFn: async (newOrder: OrderFormInputsType) =>
       api.post(endpoint, newOrder),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
+      queryClient.invalidateQueries({ queryKey: [baseOrderQueryKey] });
       onSuccess();
     },
   });
@@ -51,9 +51,9 @@ export const useDeleteOrder = () =>
   useMutation<OrderType, Error, string>({
     mutationFn: async (orderId) => api.delete(`${endpoint}/${orderId}`),
     onSuccess: (data, orderId) => {
-      queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
+      queryClient.invalidateQueries({ queryKey: [baseOrderQueryKey] });
       queryClient.removeQueries({
-        queryKey: [`${baseClientQueryKey}-${orderId}`],
+        queryKey: [`${baseOrderQueryKey}-${orderId}`],
         exact: true,
       });
     },

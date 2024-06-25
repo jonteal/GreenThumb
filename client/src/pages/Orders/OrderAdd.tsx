@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import {
   orderStatuses,
   packagingOptions,
@@ -15,10 +14,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import {
-  OrderFormInputsType,
-  OrderItemTestType,
-} from "@/services/orders/types";
+import { OrderFormInputsType } from "@/services/orders/types";
 import {
   Select,
   SelectContent,
@@ -33,7 +29,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { DatePickerInput } from "@/components/DatePickerInput";
 
-export const OrderAddTest: React.FC = () => {
+export const OrderAdd: React.FC = () => {
   const { toast } = useToast();
   const { data: customers, isLoading: isCustomersLoading } = useGetCustomers();
 
@@ -172,7 +168,7 @@ export const OrderAddTest: React.FC = () => {
                   name={`items.${index}.quantity`}
                   render={({ field }) => (
                     <FormItem className="w-full mr-10">
-                      <FormLabel>Quantity</FormLabel>
+                      <FormLabel className="font-bold">Quantity</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -188,7 +184,7 @@ export const OrderAddTest: React.FC = () => {
                   name={`items.${index}.price`}
                   render={({ field }) => (
                     <FormItem className="w-full mr-10">
-                      <FormLabel>Unit Price</FormLabel>
+                      <FormLabel className="font-bold">Unit Price</FormLabel>
                       <FormControl>
                         <Input
                           type="number"

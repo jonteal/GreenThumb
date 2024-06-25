@@ -7,4 +7,6 @@ export type CustomerType = {
   stateProvince: string;
   country: string;
   postalCode: string;
+  email: string;
+  phone: string;
 };

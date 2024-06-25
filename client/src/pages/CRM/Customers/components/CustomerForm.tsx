@@ -121,6 +121,33 @@ export const CustomerForm = ({
             )}
           />
         </div>
+
+        <div className="flex flex-row w-full mt-5">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="w-full mr-10">
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter email" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem className="w-full mr-10">
+                <FormLabel>Phone number</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter phone number" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
         <div className="flex gap-4 mt-5">
           <Button
             type="button"

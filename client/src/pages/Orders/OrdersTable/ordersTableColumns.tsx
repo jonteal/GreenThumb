@@ -45,7 +45,7 @@ export const OrdersTableColumns: ColumnDef<OrderType>[] = [
     },
     cell: ({ row }) => (
       <Link
-        to={`/crm/customer/${row.original.orderId}`}
+        to={`/orders/${row.original.orderId}`}
         className="capitalize text-left hover:underline"
       >
         {row.getValue("orderId")}
