@@ -6,7 +6,9 @@
     "city": "Lowell",
     "stateProvince": "AR",
     "country": "United States",
-    "postalCode": "89043"
+    "postalCode": "89043",
+    "phone": "489-487-3809",
+    "email": "benjamin@gmail.com"
   },
   {
     "customerId": "456",
@@ -15,7 +17,9 @@
     "city": "Lowell",
     "stateProvince": "AR",
     "country": "United States",
-    "postalCode": "89043"
+    "postalCode": "89043",
+    "phone": "489-934-3783",
+    "email": "lydiascafe@gmail.com"
   },
   {
     "customerId": "789",
@@ -24,6 +28,8 @@
     "city": "Lowell",
     "stateProvince": "AR",
     "country": "United States",
-    "postalCode": "89043"
+    "postalCode": "89043",
+    "phone": "489-934-9384",
+    "email": "jon@gmail.com"
   }
 ]

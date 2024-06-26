@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Plus } from "lucide-react";
-import { AddCrop } from "./AddCrop";
 import { TasksTable } from "./TasksTable/TasksTable";
 import { TaskForm } from "./TaskForm";
 
@@ -28,24 +27,17 @@ export const Crops = () => {
     console.log("rendered");
   }, [cropId]);
 
-  console.log("cropId from param: ", cropId);
-
-  // const updateCrop = useUpdateCrop({
-  //   onSuccess: () => {
-  //     toast({
-  //       title: "Customer added successfully",
-  //       variant: "success",
-  //     } as any);
-  //   },
-  // });
-
   return (
     <div className="flex flex-row justify-between">
       {/* Crop Library */}
       <Card className="flex flex-col items-center rounded-md mx-3 w-1/4">
         <CardHeader className="text-md font-semibold flex flex-row justify-between py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           <span className="mr-3">Crop Library</span>
-          <AddCrop />
+          <Plus
+            onClick={() => {
+              navigate("/crops/add");
+            }}
+          />
         </CardHeader>
         <CardContent className="flex flex-col items-center py-2">
           {crops?.map((crop) => (
@@ -53,7 +45,6 @@ export const Crops = () => {
               key={crop.cropId}
               className="font-bold hover:underline"
               onClick={() => {
-                console.log("cropId from click: ", crop.cropId);
                 navigate(`/crops/${crop.cropId}`);
               }}
             >
@@ -67,11 +58,10 @@ export const Crops = () => {
       <Card className="flex flex-col items-center rounded-md mx-3 w-1/2">
         <CardHeader className="text-md font-semibold flex flex-row justify-between py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           <span className="mr-3">Grow Schedule</span>
-          <Plus onClick={() => setAddingTask(!addingTask)} />
         </CardHeader>
         <CardContent>
           {addingTask && <TaskForm />}
-          <TasksTable />
+          {/* <TasksTable /> */}
         </CardContent>
       </Card>
 
@@ -79,8 +69,6 @@ export const Crops = () => {
       <Card className="flex flex-col items-center rounded-md mx-3 w-1/4">
         <CardHeader className="text-md font-semibold flex flex-row justify-between py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           <span className="mr-3">Crop Info</span>
-
-          <Plus />
         </CardHeader>
         <CardContent></CardContent>
       </Card>

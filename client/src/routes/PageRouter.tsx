@@ -4,10 +4,11 @@ import { CustomerAdd } from "@/pages/CRM/Customers/CustomerAdd";
 import { CustomerDetails } from "@/pages/CRM/Customers/CustomerDetails";
 import { CustomerEdit } from "@/pages/CRM/Customers/CustomerEdit";
 import { Customers } from "@/pages/CRM/Customers/Customers";
+import { AddCrop } from "@/pages/Crops/AddCrop";
 import { Crops } from "@/pages/Crops/Crops";
 import { Dashboard } from "@/pages/Dashboard/Dashboard";
 import { ErrorPage } from "@/pages/ErrorPage";
-import { OrderAdd } from "@/pages/Orders/OrderAdd";
+import { AddOrder } from "@/pages/Orders/AddOrder";
 import { OrderDetails } from "@/pages/Orders/OrderDetails";
 import { Orders } from "@/pages/Orders/Orders";
 import { Production } from "@/pages/Production/Production";
@@ -27,9 +28,10 @@ export const PageRouter = () => {
       <Route path="/crm" element={<CRM />} />
       <Route path="/products" element={<Products />} />
       <Route path="/crops" element={<Crops />} />
+      <Route path="/crops/add" element={<AddCrop />} />
       <Route path="/crops/:cropId" element={<Crops />} />
       <Route path="/orders" element={<Orders />} />
-      <Route path="/orders/add" element={<OrderAdd />} />
+      <Route path="/orders/add" element={<AddOrder />} />
       <Route path="/orders/:orderId" element={<OrderDetails />} />
       <Route
         path="/crm/customer"

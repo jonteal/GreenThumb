@@ -6,7 +6,7 @@ export type OrderItemType = {
   cropId: string;
   cropName: string;
   packaging: string;
-  unitPrice: number;
+  price: number;
   quantity: number;
 };
 

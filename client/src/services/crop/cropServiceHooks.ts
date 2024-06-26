@@ -3,7 +3,7 @@ import { api, queryClient } from "@/services/api";
 import { CropType } from "./types";
 
 const endpoint = "crop";
-export const baseClientQueryKey = "crop";
+export const baseCropQueryKey = "crop";
 
 export const cropTasks = [
   "Prep Trays",
@@ -13,15 +13,21 @@ export const cropTasks = [
   "Harvest",
 ] as const;
 
+export const daysOptions = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+] as const;
+
+export const unitsOptions = ["oz", "g"] as const;
+
 export const useGetCrops = () =>
   useQuery<CropType[]>({
-    queryKey: [baseClientQueryKey],
+    queryKey: [baseCropQueryKey],
     queryFn: async () => api.get(endpoint),
   });
 
 export const useGetCropById = (cropId: string) =>
   useQuery<CropType>({
-    queryKey: [`${baseClientQueryKey}-${cropId}`],
+    queryKey: [`${baseCropQueryKey}-${cropId}`],
     queryFn: async () => api.get(`${endpoint}/${cropId}`),
   });
 
@@ -29,7 +35,7 @@ export const useAddCrop = ({ onSuccess }: { onSuccess: () => void }) =>
   useMutation<CropType, Error, CropType>({
     mutationFn: async (newCrop: CropType) => api.post(endpoint, newCrop),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
+      queryClient.invalidateQueries({ queryKey: [baseCropQueryKey] });
       onSuccess();
     },
   });
@@ -47,9 +53,9 @@ export const useDeleteCrop = () =>
   useMutation<CropType, Error, string>({
     mutationFn: async (cropId) => api.delete(`${endpoint}/${cropId}`),
     onSuccess: (data, cropId) => {
-      queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
+      queryClient.invalidateQueries({ queryKey: [baseCropQueryKey] });
       queryClient.removeQueries({
-        queryKey: [`${baseClientQueryKey}-${cropId}`],
+        queryKey: [`${baseCropQueryKey}-${cropId}`],
         exact: true,
       });
     },

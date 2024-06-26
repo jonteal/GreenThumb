@@ -15,14 +15,14 @@
         "cropId": "123",
         "cropName": "Broccoli",
         "packaging": "Small",
-        "unitPrice": 5,
+        "price": 5,
         "quantity": 4
       },
       {
         "cropId": "456",
         "cropName": "Speckled Pea",
         "packaging": "Small",
-        "unitPrice": 5,
+        "price": 5,
         "quantity": 4
       }
     ]
@@ -43,7 +43,7 @@
         "cropId": "123",
         "cropName": "Broccoli",
         "packaging": "Small",
-        "unitPrice": 5,
+        "price": 5,
         "quantity": 3
       }
     ]
@@ -64,7 +64,7 @@
         "cropId": "123",
         "cropName": "Broccoli",
         "packaging": "Small",
-        "unitPrice": 5,
+        "price": 5,
         "quantity": 1
       }
     ]
@@ -85,7 +85,7 @@
         "cropId": "123",
         "cropName": "Broccoli",
         "packaging": "Large",
-        "unitPrice": 15,
+        "price": 15,
         "quantity": 2
       }
     ]
@@ -106,7 +106,7 @@
         "cropId": "123",
         "cropName": "Broccoli",
         "packaging": "Medium",
-        "unitPrice": 10,
+        "price": 10,
         "quantity": 2
       }
     ]

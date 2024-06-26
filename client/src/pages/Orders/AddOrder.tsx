@@ -29,7 +29,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { DatePickerInput } from "@/components/DatePickerInput";
 
-export const OrderAdd: React.FC = () => {
+export const AddOrder: React.FC = () => {
   const { toast } = useToast();
   const { data: customers, isLoading: isCustomersLoading } = useGetCustomers();
 

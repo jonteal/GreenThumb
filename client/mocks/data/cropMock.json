@@ -4,6 +4,48 @@
     "cropName": "Broccoli",
     "yieldAmount": 175,
     "unit": "g",
+    "tasks": [
+      {
+        "id": "abc",
+        "taskId": "abc",
+        "cropId": "123",
+        "day": 1,
+        "task": "Prep Trays",
+        "info": "Add soil to trays"
+      },
+      {
+        "id": "def",
+        "taskId": "def",
+        "cropId": "123",
+        "day": 1,
+        "task": "Seed",
+        "info": "Put seeds soil and mist heavily to initiate germination"
+      },
+      {
+        "id": "ghi",
+        "taskId": "ghi",
+        "cropId": "123",
+        "day": 1,
+        "task": "Germinate",
+        "info": "Put tray on shelf with tray on top with added weight"
+      },
+      {
+        "id": "jkl",
+        "taskId": "jkl",
+        "cropId": "123",
+        "day": 3,
+        "task": "Light",
+        "info": "Set tray under grow light and begin light phase."
+      },
+      {
+        "id": "mno",
+        "taskId": "mno",
+        "cropId": "123",
+        "day": 6,
+        "task": "Harvest",
+        "info": "Harvest crop and bag per ounce. After completing that, empty and sanitize trays."
+      }
+    ],
     "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   },
   {
@@ -11,6 +53,48 @@
     "cropName": "Speckled Pea",
     "yieldAmount": 175,
     "unit": "g",
+    "tasks": [
+      {
+        "id": "abc",
+        "taskId": "abc",
+        "cropId": "123",
+        "day": 1,
+        "task": "Prep Trays",
+        "info": "Add soil to trays"
+      },
+      {
+        "id": "def",
+        "taskId": "def",
+        "cropId": "123",
+        "day": 1,
+        "task": "Seed",
+        "info": "Put seeds soil and mist heavily to initiate germination"
+      },
+      {
+        "id": "ghi",
+        "taskId": "ghi",
+        "cropId": "123",
+        "day": 1,
+        "task": "Germinate",
+        "info": "Put tray on shelf with tray on top with added weight"
+      },
+      {
+        "id": "jkl",
+        "taskId": "jkl",
+        "cropId": "123",
+        "day": 3,
+        "task": "Light",
+        "info": "Set tray under grow light and begin light phase."
+      },
+      {
+        "id": "mno",
+        "taskId": "mno",
+        "cropId": "123",
+        "day": 6,
+        "task": "Harvest",
+        "info": "Harvest crop and bag per ounce. After completing that, empty and sanitize trays."
+      }
+    ],
     "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   },
   {
@@ -18,6 +102,48 @@
     "cropName": "Radish",
     "yieldAmount": 175,
     "unit": "g",
+    "tasks": [
+      {
+        "id": "abc",
+        "taskId": "abc",
+        "cropId": "123",
+        "day": 1,
+        "task": "Prep Trays",
+        "info": "Add soil to trays"
+      },
+      {
+        "id": "def",
+        "taskId": "def",
+        "cropId": "123",
+        "day": 1,
+        "task": "Seed",
+        "info": "Put seeds soil and mist heavily to initiate germination"
+      },
+      {
+        "id": "ghi",
+        "taskId": "ghi",
+        "cropId": "123",
+        "day": 1,
+        "task": "Germinate",
+        "info": "Put tray on shelf with tray on top with added weight"
+      },
+      {
+        "id": "jkl",
+        "taskId": "jkl",
+        "cropId": "123",
+        "day": 3,
+        "task": "Light",
+        "info": "Set tray under grow light and begin light phase."
+      },
+      {
+        "id": "mno",
+        "taskId": "mno",
+        "cropId": "123",
+        "day": 6,
+        "task": "Harvest",
+        "info": "Harvest crop and bag per ounce. After completing that, empty and sanitize trays."
+      }
+    ],
     "notes": "Adjust watering schedule as needed. The goal is to use the least amount of water you can, so experiment to find the right balance."
   }
 ]

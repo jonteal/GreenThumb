@@ -10,22 +10,14 @@ export const OrderDetails = () => {
   const { orderId } = useParams();
 
   const { data: order } = useGetOrderById(orderId || "");
-  console.log("order", order);
-
-  console.log("order.customerId", order?.customerId);
 
   const { data: customer } = useGetCustomerById(order?.customerId || "");
 
-  console.log("customer: ", customer);
+  console.log("order: ", order);
 
-  function sumPrices(items: OrderItemType[]) {
-    return items.reduce(
-      (total, item) => total + item.unitPrice * item.quantity,
-      0
-    );
-  }
-
-  // Example usage:
+  const sumPrices = (items: OrderItemType[]) => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   let subTotal;
 
@@ -48,7 +40,7 @@ export const OrderDetails = () => {
                 <span className="text-muted-foreground">
                   {item.cropName} x <span>{item.quantity}</span>
                 </span>
-                <span>${item.quantity * item.unitPrice}</span>
+                <span>${item.quantity * item.price}</span>
               </li>
             ))}
           </ul>
