@@ -55,6 +55,11 @@ export const OrderAdd: React.FC = () => {
     },
   });
 
+  const handleSelectChange = (value: string, id: string) => {
+    form.setValue("customer", value);
+    form.setValue("customerId", id);
+  };
+
   const onSubmit = (data: OrderFormInputsType) => {
     addOrder.mutate(data);
 
@@ -73,8 +78,15 @@ export const OrderAdd: React.FC = () => {
               <FormItem className="w-full mr-10">
                 <FormLabel className="font-bold">Customer</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    const selectedOption = customers?.find(
+                      (customer) => customer.customer === value
+                    );
+                    handleSelectChange(
+                      selectedOption?.customer || "",
+                      selectedOption?.customerId || ""
+                    );
+                  }}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -86,6 +98,7 @@ export const OrderAdd: React.FC = () => {
                       <SelectItem
                         key={`status-${customer}-${index}`}
                         value={customer.customer}
+                        data-id={customer.customerId}
                       >
                         {customer.customer}
                       </SelectItem>
@@ -96,6 +109,9 @@ export const OrderAdd: React.FC = () => {
             );
           }}
         />
+
+        <input type="hidden" {...form.register("customerId")} />
+
         <Card className="mt-3">
           <CardHeader className="font-bold">Items</CardHeader>
           <CardContent>

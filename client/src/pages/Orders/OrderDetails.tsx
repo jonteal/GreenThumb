@@ -70,7 +70,7 @@ export const OrderDetails = () => {
             <li className="flex items-center justify-between font-semibold">
               <span className="text-muted-foreground">Total</span>
               <span>
-                ${`${subTotal && subTotal + 5 + (subTotal * 0.065).toFixed(2)}`}
+                ${subTotal && (subTotal + 5 + subTotal * 0.065).toFixed(2)}
               </span>
             </li>
           </ul>
