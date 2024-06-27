@@ -10,22 +10,24 @@ import {
   useGetCrops,
   // useUpdateCrop,
 } from "@/services/crop/cropServiceHooks";
-import { useGetTasks } from "@/services/task/taskServiceHooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Crops = () => {
-  const { cropId } = useParams();
   const navigate = useNavigate();
   const { data: crops, isLoading } = useGetCrops();
-  const [activeItem, setActiveItem] = useState(crops?.[0].cropId);
-  const [addingTask, setAddingTask] = useState(false);
-  const { data: crop } = useGetCropById(activeItem || "");
-  const { data: tasksData } = useGetTasks();
+  const [selectedItem, setSelectedItem] = useState("");
+
+  console.log("selectedItem: ", selectedItem);
 
   useEffect(() => {
-    setActiveItem(crop?.cropId);
-    console.log("rendered");
-  }, [cropId]);
+    if (crops && crops.length > 0) {
+      setSelectedItem(crops[0].cropId); // Set the first item as the default selected item
+    }
+  }, [crops]);
+
+  const selectedCropData = crops?.find((crop) => crop.cropId === selectedItem);
+
+  console.log("selectedCropData: ", selectedCropData);
 
   return (
     <div className="flex flex-row justify-between">
@@ -43,10 +45,10 @@ export const Crops = () => {
           {crops?.map((crop) => (
             <span
               key={crop.cropId}
-              className="font-bold hover:underline"
-              onClick={() => {
-                navigate(`/crops/${crop.cropId}`);
-              }}
+              className={`font-bold hover:underline ${
+                selectedItem === crop.id ? "active" : ""
+              }`}
+              onClick={() => setSelectedItem(crop.cropId)}
             >
               {crop.cropName}
             </span>
@@ -60,8 +62,8 @@ export const Crops = () => {
           <span className="mr-3">Grow Schedule</span>
         </CardHeader>
         <CardContent>
-          {addingTask && <TaskForm />}
-          {/* <TasksTable /> */}
+          <h2>{selectedCropData?.cropName}</h2>
+          {/* Render more data as needed */}
         </CardContent>
       </Card>
 
