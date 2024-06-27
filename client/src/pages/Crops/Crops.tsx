@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import { TasksTable } from "./TasksTable/TasksTable";
-import { TaskForm } from "./TaskForm";
 
 import {
   useGetCropById,
@@ -62,7 +61,7 @@ export const Crops = () => {
           <span className="mr-3">Grow Schedule</span>
         </CardHeader>
         <CardContent>
-          <h2>{selectedCropData?.cropName}</h2>
+          <TasksTable tasks={selectedCropData?.tasks} />
           {/* Render more data as needed */}
         </CardContent>
       </Card>
@@ -72,7 +71,18 @@ export const Crops = () => {
         <CardHeader className="text-md font-semibold flex flex-row justify-between py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           <span className="mr-3">Crop Info</span>
         </CardHeader>
-        <CardContent></CardContent>
+        <CardContent className="flex flex-col items-start">
+          <h2 className="font-bold mt-3">Average Yield</h2>
+          <p>
+            {selectedCropData?.yieldAmount} {selectedCropData?.unit} / tray
+          </p>
+
+          <h3 className="font-bold mt-3">Lot</h3>
+          <p>{selectedCropData?.lot}</p>
+
+          <h3 className="font-bold mt-3">Notes</h3>
+          <p>{selectedCropData?.notes}</p>
+        </CardContent>
       </Card>
     </div>
   );

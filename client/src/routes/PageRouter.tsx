@@ -12,6 +12,7 @@ import { AddOrder } from "@/pages/Orders/AddOrder";
 import { OrderDetails } from "@/pages/Orders/OrderDetails";
 import { Orders } from "@/pages/Orders/Orders";
 import { Production } from "@/pages/Production/Production";
+import { AddProduct } from "@/pages/Products/AddProduct";
 import { Products } from "@/pages/Products/Products";
 import { Schedule } from "@/pages/Schedule/Schedule";
 import { Team } from "@/pages/Team/Team";
@@ -27,6 +28,7 @@ export const PageRouter = () => {
       <Route path="/production" element={<Production />} />
       <Route path="/crm" element={<CRM />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/products/add" element={<AddProduct />} />
       <Route path="/crops" element={<Crops />} />
       <Route path="/crops/add" element={<AddCrop />} />
       <Route path="/crops/:cropId" element={<Crops />} />

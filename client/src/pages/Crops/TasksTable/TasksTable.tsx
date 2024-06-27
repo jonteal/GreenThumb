@@ -29,17 +29,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import {
-  useGetTasks,
-  useGetTasksByCropId,
-} from "@/services/task/taskServiceHooks";
+
 import { TasksTableColumns } from "./tasksTableColumns";
+import { TaskType } from "@/services/crop/types";
 
-export const TasksTable = ({ cropId }: { cropId: string }) => {
-  const { data: tasks, isLoading } = useGetTasksByCropId(cropId);
-
-  console.log("tasks: ", tasks);
-
+export const TasksTable = ({ tasks }: { tasks: TaskType[] | any }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -152,7 +146,7 @@ export const TasksTable = ({ cropId }: { cropId: string }) => {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      {/* <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
@@ -175,7 +169,7 @@ export const TasksTable = ({ cropId }: { cropId: string }) => {
             Next
           </Button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
