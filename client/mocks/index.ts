@@ -1,10 +1,9 @@
 import jsonServer from "json-server";
 import customerMock from "./data/customerMock.json";
-import projectMock from "./data/projectMock.json";
 import cropMock from "./data/cropMock.json";
 import orderMock from "./data/orderMock.json";
-import taskMock from "./data/taskMock.json";
 import teamMock from "./data/teamMock.json";
+import productMock from "./data/productMock.json";
 
 const serverPort = 5174;
 
@@ -22,17 +21,14 @@ export const startMockServer = () => {
     const customerRouter = jsonServer.router({ customer: customerMock });
     customerRouter.db._.id = "customerId";
 
-    const projectRouter = jsonServer.router({ project: projectMock });
-    projectRouter.db._.id = "customerProjectId";
-
     const cropRouter = jsonServer.router({ crop: cropMock });
     cropRouter.db._.id = "cropId";
 
     const orderRouter = jsonServer.router({ order: orderMock });
     orderRouter.db._.id = "orderId";
 
-    const taskRouter = jsonServer.router({ task: taskMock });
-    taskRouter.db._.id = "taskId";
+    const productRouter = jsonServer.router({ product: productMock });
+    productRouter.db._.id = "productId";
 
     const teamRouter = jsonServer.router({ team: teamMock });
     teamRouter.db._.id = "teamMemberId";
@@ -46,20 +42,17 @@ export const startMockServer = () => {
         "/*": "/$1",
         "/customer/:customerId": "/customer/:customerId",
         "/order/:orderId": "/order/:orderId",
-        "/customer/:customerId/project": "/project?customerId=:customerId",
         "/customer/:customerId/order": "/order?customerId=:customerId",
         "/crop/:cropId": "/crop?cropId=:cropId",
-        "/crop/:cropId/task": "/task?cropId=:cropId",
         "/team/:teamMemberId": "/team?teamMemberId=:teamMemberId",
-        // "project/:clientProjectId": "/project?clientProjectId=:clientProjectId",
+        "/product/:productId": "/product/:productId",
       })
     );
 
+    mockServer.all(["/product", "/product/*"], productRouter);
     mockServer.all(["/crop", "/crop/*"], cropRouter);
-    mockServer.all(["/task", "/task/*"], taskRouter);
     mockServer.all(["/order", "/order/*"], orderRouter);
     mockServer.all(["/customer", "/customer/*"], customerRouter);
-    mockServer.all(["/project", "/project/*"], projectRouter);
     mockServer.all(["/team", "/team/*"], teamRouter);
 
     mockServer.listen(serverPort, () => {

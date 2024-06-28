@@ -1,12 +1,15 @@
+export type PackagesType = {
+  packageId?: string;
+  size: "Small" | "Medium" | "Large" | "Bulk";
+  price: number;
+  active: boolean;
+};
+
 export type ProductType = {
-  id: string;
   productId: string;
   productName: string;
   available: boolean;
-  packaging: {
-    size: "Small" | "Medium" | "Large" | "Bulk";
-    price: number;
-  };
+  packages: PackagesType[];
   unitValue: {
     value: number;
     unit: "g" | "oz";

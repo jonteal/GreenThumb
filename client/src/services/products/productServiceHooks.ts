@@ -3,9 +3,10 @@ import { api, queryClient } from "@/services/api";
 import { ProductType } from "./types";
 
 const endpoint = "product";
-export const baseProductQueryKey = "crop";
+export const baseProductQueryKey = "product";
 
 export const unitsOptions = ["oz", "g"] as const;
+export const sizeOptions = ["Small", "Medium", "Large", "Bulk"] as const;
 
 export const useGetProducts = () =>
   useQuery<ProductType[]>({

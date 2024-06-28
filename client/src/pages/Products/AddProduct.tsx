@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import {
   Form,
@@ -16,14 +17,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { toast } from "@/components/ui/use-toast";
+
 import {
-  cropTasks,
-  daysOptions,
-  unitsOptions,
-} from "@/services/crop/cropServiceHooks";
-import { useAddProduct } from "@/services/products/productServiceHooks";
+  sizeOptions,
+  useAddProduct,
+} from "@/services/products/productServiceHooks";
 import { ProductType } from "@/services/products/types";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -33,13 +33,16 @@ export const AddProduct = () => {
   const form = useForm<ProductType>({
     defaultValues: {
       productName: "",
+      packages: [{ active: false, size: "Small", price: 0 }],
     },
   });
 
-  //   const { fields, append, remove } = useFieldArray({
-  //     control: form.control,
-  //     name: "tasks",
-  //   });
+  const { fields, remove, append } = useFieldArray({
+    control: form.control,
+    name: "packages",
+  });
+
+  console.log("fields: ", fields);
 
   const addProduct = useAddProduct({
     onSuccess: () => {
@@ -47,7 +50,7 @@ export const AddProduct = () => {
         title: "Crop added successfully",
         variant: "success",
       } as any);
-      navigate("/crops");
+      navigate("/products");
     },
   });
 
@@ -77,92 +80,118 @@ export const AddProduct = () => {
             )}
           />
 
-          {/* <Card className="mt-3">
-            <CardHeader className="font-bold">Crop Schedule</CardHeader>
+          <FormField
+            control={form.control}
+            name="available"
+            render={({ field }) => (
+              <FormItem className="flex flex-col mt-3">
+                <FormLabel className="font-bold">Available</FormLabel>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={(checked) => field.onChange(checked)}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <Card className="mt-3">
+            <CardHeader className="font-bold">Packages</CardHeader>
             <CardContent>
               {fields.map((field, index) => (
-                <div className="flex flex-row items-start mt-3" key={field.id}>
-                  <FormField
-                    control={form.control}
-                    name={`tasks.${index}.day`}
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-full mr-10">
-                          <FormLabel className="font-bold">Day</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value.toString()}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select day" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {daysOptions?.map((day, index) => (
-                                <SelectItem
-                                  key={`day-${day}-${index}`}
-                                  value={day.toString()}
-                                >
-                                  {day}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                <div
+                  className="flex flex-row items-end justify-between mt-3"
+                  key={field.id}
+                >
+                  <div className="flex flex-row mt-3 justify-between w-full mr-20">
+                    <FormField
+                      control={form.control}
+                      name={`packages.${index}.active`}
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/4 mr-10 flex flex-col">
+                            <FormLabel className="font-bold">Active</FormLabel>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={(checked) =>
+                                field.onChange(checked)
+                              }
+                            />
+                          </FormItem>
+                        );
+                      }}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`packages.${index}.size`}
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-full mr-10 flex flex-col">
+                            <FormLabel className="font-bold">Size</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select Task" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {sizeOptions?.map((option, index) => (
+                                  <SelectItem
+                                    key={`task-${option}-${index}`}
+                                    value={option}
+                                  >
+                                    {option}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`packages.${index}.price`}
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                          <FormLabel className="font-bold">Price</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="number"
+                              className="col-span-3 mt-3"
+                              placeholder="Enter product name"
+                              {...field}
+                            />
+                          </FormControl>
                         </FormItem>
-                      );
-                    }}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`tasks.${index}.task`}
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-full mr-10">
-                          <FormLabel className="font-bold">Tasks</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select Task" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {cropTasks?.map((option, index) => (
-                                <SelectItem
-                                  key={`task-${option}-${index}`}
-                                  value={option}
-                                >
-                                  {option}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`tasks.${index}.info`}
-                    render={({ field }) => (
-                      <FormItem className="w-full mr-10">
-                        <FormLabel className="font-bold">Info</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Enter task info" {...field} />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
+                      )}
+                    />
+                  </div>
+
                   <Button type="button" onClick={() => remove(index)}>
                     Remove
                   </Button>
                 </div>
               ))}
+              <Button
+                className="mr-3 mt-5 bg-green-600"
+                type="button"
+                onClick={() => {
+                  append({
+                    active: false,
+                    size: "Medium",
+                    price: 0,
+                  });
+                }}
+              >
+                Add Item
+              </Button>
             </CardContent>
-          </Card> */}
+          </Card>
 
           {/* <Card className="mt-3">
             <CardContent className="flex flex-col justify-between">

@@ -1,0 +1,21 @@
+[
+  {
+    "productId": "product1",
+    "productName": "Organic Speckled Pea",
+    "available": true,
+    "packages": [
+      {
+        "packageId": "package1",
+        "size": "Small",
+        "price": 5,
+        "active": true
+      }
+    ],
+    "unitValue": {
+      "value": 5,
+      "unit": "oz"
+    },
+    "storageBuffer": 3,
+    "yieldBuffer": 2
+  }
+]
