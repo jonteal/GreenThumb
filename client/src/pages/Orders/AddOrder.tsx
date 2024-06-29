@@ -62,7 +62,6 @@ export const AddOrder: React.FC = () => {
 
   const onSubmit = (data: OrderFormInputsType) => {
     addOrder.mutate(data);
-
     form.reset();
   };
 

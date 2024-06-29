@@ -19,9 +19,11 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/components/ui/use-toast";
+import { useGetCrops } from "@/services/crop/cropServiceHooks";
 
 import {
   sizeOptions,
+  unitsOptions,
   useAddProduct,
 } from "@/services/products/productServiceHooks";
 import { ProductType } from "@/services/products/types";
@@ -42,7 +44,7 @@ export const AddProduct = () => {
     name: "packages",
   });
 
-  console.log("fields: ", fields);
+  const { data: crops } = useGetCrops();
 
   const addProduct = useAddProduct({
     onSuccess: () => {
@@ -53,6 +55,11 @@ export const AddProduct = () => {
       navigate("/products");
     },
   });
+
+  const handleSelectChange = (value: string, id: string) => {
+    form.setValue("cropName", value);
+    form.setValue("cropId", id);
+  };
 
   const handleAdd = (data: ProductType) => {
     addProduct.mutate(data);
@@ -94,6 +101,46 @@ export const AddProduct = () => {
                 </FormControl>
               </FormItem>
             )}
+          />
+
+          <FormField
+            control={form.control}
+            name="cropName"
+            render={({ field }) => {
+              return (
+                <FormItem className="w-full mr-10 mt-3">
+                  <FormLabel className="font-bold">Crop</FormLabel>
+                  <Select
+                    onValueChange={(value) => {
+                      const selectedOption = crops?.find(
+                        (crop) => crop.cropName === value
+                      );
+                      handleSelectChange(
+                        selectedOption?.cropName || "",
+                        selectedOption?.cropId || ""
+                      );
+                    }}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a customer" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {crops?.map((crop, index) => (
+                        <SelectItem
+                          key={`status-${crop}-${index}`}
+                          value={crop.cropName}
+                          data-id={crop.cropId}
+                        >
+                          {crop.cropName}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              );
+            }}
           />
 
           <Card className="mt-3">
@@ -193,15 +240,15 @@ export const AddProduct = () => {
             </CardContent>
           </Card>
 
-          {/* <Card className="mt-3">
+          <Card className="mt-3">
             <CardContent className="flex flex-col justify-between">
               <div className="flex flex-row justify-between">
                 <FormField
                   control={form.control}
-                  name="yieldAmount"
+                  name="unitValue.value"
                   render={({ field }) => (
                     <FormItem className="mt-3 w-1/2">
-                      <FormLabel className="font-bold">Yield</FormLabel>
+                      <FormLabel className="font-bold">Value</FormLabel>
                       <FormControl>
                         <Input
                           className="col-span-3 mt-3"
@@ -213,11 +260,11 @@ export const AddProduct = () => {
                   )}
                 />
 
-                <p className="mt-3 mx-5 font-bold">x</p>
+                <p className="mt-3 mx-5 font-bold">$/</p>
 
                 <FormField
                   control={form.control}
-                  name="unit"
+                  name="unitValue.unit"
                   render={({ field }) => {
                     return (
                       <FormItem className="w-1/2 mr-10 mt-3">
@@ -246,42 +293,54 @@ export const AddProduct = () => {
                     );
                   }}
                 />
-
-                <p className="mt-3 mx-5 font-bold">/tray</p>
               </div>
 
               <div className="flex flex-col mt-3">
                 <FormField
                   control={form.control}
-                  name="lot"
+                  name="storageBuffer"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold mt-3">Lot</FormLabel>
+                      <FormLabel className="font-bold mt-3">
+                        Storage Buffer
+                      </FormLabel>
                       <FormControl>
-                        <Input
-                          className="col-span-3 mt-3"
-                          placeholder="Enter lot"
-                          {...field}
-                        />
+                        <div className="flex flex-row items-center">
+                          <Input
+                            type="number"
+                            className="col-span-3 mt-3"
+                            placeholder="Enter storage buffer"
+                            {...field}
+                          />
+                          <p className="font-bold ml-3">Days</p>
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
-                  name="notes"
+                  name="yieldBuffer"
                   render={({ field }) => (
                     <FormItem className="w-full mr-10 mt-3">
-                      <FormLabel className="font-bold">Info</FormLabel>
+                      <FormLabel className="font-bold">Yield Buffer</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Enter task info" {...field} />
+                        <div className="flex flex-row items-center">
+                          <Input
+                            type="number"
+                            className="col-span-3 mt-3"
+                            placeholder="Enter yield buffer"
+                            {...field}
+                          />
+                          <p className="font-bold ml-3">%</p>
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}
                 />
               </div>
             </CardContent>
-          </Card> */}
+          </Card>
 
           <div className="mt-5">
             <Button className="bg-green-600" type="submit">

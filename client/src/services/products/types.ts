@@ -9,6 +9,8 @@ export type ProductType = {
   productId: string;
   productName: string;
   available: boolean;
+  cropName: string;
+  cropId: string;
   packages: PackagesType[];
   unitValue: {
     value: number;

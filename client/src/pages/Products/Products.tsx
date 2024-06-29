@@ -1,6 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useGetCrops } from "@/services/crop/cropServiceHooks";
 import { useGetProducts } from "@/services/products/productServiceHooks";
+import { Link } from "react-router-dom";
 
 export const Products = () => {
   const { data: crops, isLoading } = useGetCrops();
@@ -8,6 +10,9 @@ export const Products = () => {
   console.log("products: ", products);
   return (
     <div className="flex flex-row">
+      <Button asChild variant="outline" className="bg-green-600 text-slate-50">
+        <Link to="/products/add">Add Product</Link>
+      </Button>
       <Card className="flex flex-col items-center rounded-md mx-3 w-1/4">
         <CardHeader className="text-md font-semibold flex flex-row justify-center py-2 text-neutral-50 w-full bg-neutral-600 rounded-t">
           Products

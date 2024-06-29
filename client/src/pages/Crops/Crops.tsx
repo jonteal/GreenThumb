@@ -4,11 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import { TasksTable } from "./TasksTable/TasksTable";
 
-import {
-  useGetCropById,
-  useGetCrops,
-  // useUpdateCrop,
-} from "@/services/crop/cropServiceHooks";
+import { useGetCrops } from "@/services/crop/cropServiceHooks";
 import { useNavigate } from "react-router-dom";
 
 export const Crops = () => {
@@ -20,13 +16,11 @@ export const Crops = () => {
 
   useEffect(() => {
     if (crops && crops.length > 0) {
-      setSelectedItem(crops[0].cropId); // Set the first item as the default selected item
+      setSelectedItem(crops[0].cropId);
     }
   }, [crops]);
 
   const selectedCropData = crops?.find((crop) => crop.cropId === selectedItem);
-
-  console.log("selectedCropData: ", selectedCropData);
 
   return (
     <div className="flex flex-row justify-between">
