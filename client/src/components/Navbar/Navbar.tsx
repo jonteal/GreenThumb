@@ -33,21 +33,21 @@ const primaryNavItems: NavbarItemType[] = [
     icon: <LayoutDashboard />,
     href: "/dashboard",
   },
-  {
-    label: "Schedule",
-    icon: <Clock />,
-    href: "/schedule",
-  },
+  // {
+  //   label: "Schedule",
+  //   icon: <Clock />,
+  //   href: "/schedule",
+  // },
   {
     label: "Orders",
     icon: <DollarSign />,
     href: "/orders",
   },
-  {
-    label: "Production",
-    icon: <Pickaxe />,
-    href: "/production",
-  },
+  // {
+  //   label: "Production",
+  //   icon: <Pickaxe />,
+  //   href: "/production",
+  // },
   {
     label: "CRM",
     icon: <Handshake />,

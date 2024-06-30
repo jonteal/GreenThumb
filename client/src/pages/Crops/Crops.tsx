@@ -12,8 +12,6 @@ export const Crops = () => {
   const { data: crops, isLoading } = useGetCrops();
   const [selectedItem, setSelectedItem] = useState("");
 
-  console.log("selectedItem: ", selectedItem);
-
   useEffect(() => {
     if (crops && crops.length > 0) {
       setSelectedItem(crops[0].cropId);
