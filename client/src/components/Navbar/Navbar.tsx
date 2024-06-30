@@ -6,12 +6,10 @@ import {
   NavigationMenuList,
 } from "../ui/navigation-menu";
 import {
-  Clock,
   DollarSign,
   Handshake,
   LayoutDashboard,
   LogOut,
-  Pickaxe,
   Settings,
   ShoppingBasket,
   Sprout,
