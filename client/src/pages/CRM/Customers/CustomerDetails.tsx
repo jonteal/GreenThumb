@@ -7,8 +7,6 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomerDetailsCard } from "./components/CustomerDetailsCard";
 import { Button } from "@/components/ui/button";
-import { ProjectsTable } from "./Project/components/ProjectTable/ProjectTable";
-import { OrderTable } from "@/pages/Orders/OrdersTable/OrdersTable";
 import { OrdersTable } from "./components/OrdersTable";
 
 export const CustomerDetails = () => {

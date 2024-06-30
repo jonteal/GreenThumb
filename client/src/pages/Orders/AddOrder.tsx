@@ -31,7 +31,7 @@ import { DatePickerInput } from "@/components/DatePickerInput";
 
 export const AddOrder: React.FC = () => {
   const { toast } = useToast();
-  const { data: customers, isLoading: isCustomersLoading } = useGetCustomers();
+  const { data: customers } = useGetCustomers();
 
   const { data: crops } = useGetCrops();
 
@@ -72,7 +72,7 @@ export const AddOrder: React.FC = () => {
         <FormField
           control={form.control}
           name="customer"
-          render={({ field }) => {
+          render={() => {
             return (
               <FormItem className="w-full mr-10">
                 <FormLabel className="font-bold">Customer</FormLabel>

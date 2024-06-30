@@ -33,7 +33,7 @@ import { useState } from "react";
 import { CustomerTableColumns } from "./customerTableColumns";
 
 export const CustomersTable = () => {
-  const { data: customers, isLoading } = useGetCustomers();
+  const { data: customers } = useGetCustomers();
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);

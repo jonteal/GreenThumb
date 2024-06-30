@@ -39,6 +39,7 @@ export const useUpdateCustomer = (
 export const useDeleteCustomer = () =>
   useMutation<CustomerType, Error, string>({
     mutationFn: async (customerId) => api.delete(`${endpoint}/${customerId}`),
+    // @ts-ignore
     onSuccess: (data, customerId) => {
       queryClient.invalidateQueries({ queryKey: [baseClientQueryKey] });
       queryClient.removeQueries({

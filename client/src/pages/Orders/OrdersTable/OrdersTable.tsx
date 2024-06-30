@@ -33,7 +33,7 @@ import { useGetOrders } from "@/services/orders/orderServiceHooks";
 import { OrdersTableColumns } from "./ordersTableColumns";
 
 export const OrderTable = () => {
-  const { data: orders, isLoading } = useGetOrders();
+  const { data: orders } = useGetOrders();
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);

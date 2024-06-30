@@ -1,6 +1,6 @@
 import { MutationOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { api, queryClient } from "@/services/api";
-import { OrderFormInputsType, OrderItemTestType, OrderType } from "./types";
+import { OrderFormInputsType, OrderType } from "./types";
 
 const endpoint = "order";
 export const baseOrderQueryKey = "order";
@@ -50,6 +50,7 @@ export const useUpdateOrder = (
 export const useDeleteOrder = () =>
   useMutation<OrderType, Error, string>({
     mutationFn: async (orderId) => api.delete(`${endpoint}/${orderId}`),
+    // @ts-ignore
     onSuccess: (data, orderId) => {
       queryClient.invalidateQueries({ queryKey: [baseOrderQueryKey] });
       queryClient.removeQueries({

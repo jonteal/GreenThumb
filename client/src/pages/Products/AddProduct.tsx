@@ -106,7 +106,7 @@ export const AddProduct = () => {
           <FormField
             control={form.control}
             name="cropName"
-            render={({ field }) => {
+            render={() => {
               return (
                 <FormItem className="w-full mr-10 mt-3">
                   <FormLabel className="font-bold">Crop</FormLabel>

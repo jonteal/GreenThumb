@@ -52,6 +52,7 @@ export const useUpdateCrop = (
 export const useDeleteCrop = () =>
   useMutation<CropType, Error, string>({
     mutationFn: async (cropId) => api.delete(`${endpoint}/${cropId}`),
+    //@ts-ignore
     onSuccess: (data, cropId) => {
       queryClient.invalidateQueries({ queryKey: [baseCropQueryKey] });
       queryClient.removeQueries({

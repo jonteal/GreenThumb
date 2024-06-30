@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { PackagesTable } from "./PackagesTable/PackagesTable";
 
 export const Products = () => {
-  const { data: crops, isLoading } = useGetCrops();
+  const { data: crops } = useGetCrops();
   const { data: products } = useGetProducts();
   const [selectedItem, setSelectedItem] = useState("");
 

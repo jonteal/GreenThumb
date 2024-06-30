@@ -42,6 +42,7 @@ export const useUpdateProduct = (
 export const useDeleteProduct = () =>
   useMutation<ProductType, Error, string>({
     mutationFn: async (productId) => api.delete(`${endpoint}/${productId}`),
+    // @ts-ignore
     onSuccess: (data, productId) => {
       queryClient.invalidateQueries({ queryKey: [baseProductQueryKey] });
       queryClient.removeQueries({

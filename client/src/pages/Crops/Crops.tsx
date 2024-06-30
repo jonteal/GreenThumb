@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Crops = () => {
   const navigate = useNavigate();
-  const { data: crops, isLoading } = useGetCrops();
+  const { data: crops } = useGetCrops();
   const [selectedItem, setSelectedItem] = useState("");
 
   useEffect(() => {
