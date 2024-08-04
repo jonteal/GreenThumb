@@ -16,8 +16,6 @@ export const CustomerDetails = () => {
 
   const deleteCustomerMutation = useDeleteCustomer();
 
-  console.log("test details component");
-
   const handleDelete = () => {
     deleteCustomerMutation.mutate(customerId, {
       onSuccess: () => {
@@ -42,17 +40,11 @@ export const CustomerDetails = () => {
     <>
       <header className="flex justify-between items-end mt-6">
         <div>
-          <Button
-            onClick={() => navigate(`/crm/customer/${customerId}/project/add`)}
-          >
-            Add Project
-          </Button>
           <DeleteButton label="Delete Customer" handleDelete={handleDelete} />
         </div>
       </header>
       <div>
         <CustomerDetailsCard customer={customer} />
-        {/* <ProjectsTable /> */}
         <OrdersTable />
       </div>
     </>
