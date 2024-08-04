@@ -111,6 +111,8 @@ If you have any questions or comments, please feel free to contact me by email:
 
 ![add-customer](http://rawgithubusercontent.com/jonteal/GreenThumb/main/client/src/assets/add-customer.mp4)
 
+![Video Example of how to Add a customer](./assets/add-customer.mp4)
+
 <a name="screenshots"></a>
 
 ## Screenshots
