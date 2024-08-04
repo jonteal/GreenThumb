@@ -18,7 +18,7 @@ The purpose of this application is to provide microgreens business owners with a
 - [Tests](#tests)
 - [Questions](#questions)
 - [Video](#video)
-- [Screenshots](#screenshots)
+<!-- - [Screenshots](#screenshots) -->
 - [Links](#links)
 - [Resources / Credits](#credits)
 
@@ -111,11 +111,27 @@ If you have any questions or comments, please feel free to contact me by email:
 
 ![Video Example of how to Add a customer](./assets/add-customer.gif)
 
-<a name="screenshots"></a>
+#### Adding a Crop
 
-## Screenshots
+![Video Example of how to Add a crop](./assets/add-crop.gif)
 
-<a name="links"></a>
+#### Adding an Order
+
+![Video Example of how to Add an order](./assets/add-order.gif)
+
+#### Adding an Product
+
+![Video Example of how to Add a Product](./assets/add-product.gif)
+
+#### Adding a Team Member
+
+![Video Example of how to Add a Team Member](./assets/add-team-member.gif)
+
+<!-- <a name="screenshots"></a> -->
+
+<!-- ## Screenshots
+
+<a name="links"></a> -->
 
 ## Links
 
