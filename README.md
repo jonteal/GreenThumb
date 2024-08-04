@@ -109,7 +109,7 @@ If you have any questions or comments, please feel free to contact me by email:
 
 #### Adding a Customer
 
-![add-customer](./src/assets/add-customer.mov)
+![add-customer](./client/src/assets/add-customer.mov)
 
 <a name="screenshots"></a>
 
