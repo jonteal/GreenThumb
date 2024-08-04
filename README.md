@@ -18,7 +18,6 @@ The purpose of this application is to provide microgreens business owners with a
 - [Tests](#tests)
 - [Questions](#questions)
 - [Video](#video)
-<!-- - [Screenshots](#screenshots) -->
 - [Links](#links)
 - [Resources / Credits](#credits)
 
@@ -126,12 +125,6 @@ If you have any questions or comments, please feel free to contact me by email:
 #### Adding a Team Member
 
 ![Video Example of how to Add a Team Member](./assets/add-team-member.gif)
-
-<!-- <a name="screenshots"></a> -->
-
-<!-- ## Screenshots
-
-<a name="links"></a> -->
 
 ## Links
 
