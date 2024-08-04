@@ -109,7 +109,7 @@ If you have any questions or comments, please feel free to contact me by email:
 
 #### Adding a Customer
 
-![add-customer](./client/src/assets/add-customer.mov)
+![add-customer](http://rawgithubusercontent.com/jonteal/GreenThumb/main/client/src/assets/add-customer.mp4)
 
 <a name="screenshots"></a>
 
